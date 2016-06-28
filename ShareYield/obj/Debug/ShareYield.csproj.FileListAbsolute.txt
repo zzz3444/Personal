@@ -1,0 +1,25 @@
+E:\VS Workspace\ShareYield\ShareYield\bin\Debug\ShareYield.exe.config
+E:\VS Workspace\ShareYield\ShareYield\bin\Debug\ShareYield.exe
+E:\VS Workspace\ShareYield\ShareYield\bin\Debug\ShareYield.pdb
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\MainWindow.baml
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\MainWindow.g.cs
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\App.g.cs
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield_MarkupCompile.cache
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield.g.resources
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield.Properties.Resources.resources
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield.csproj.GenerateResource.Cache
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield.exe
+E:\VS Workspace\ShareYield\ShareYield\obj\Debug\ShareYield.pdb
+E:\ShareYield\ShareYield\bin\Debug\ShareYield.exe.config
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.exe
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.pdb
+E:\ShareYield\ShareYield\bin\Debug\ShareYield.exe
+E:\ShareYield\ShareYield\bin\Debug\ShareYield.pdb
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.csprojResolveAssemblyReference.cache
+E:\ShareYield\ShareYield\obj\Debug\MainWindow.baml
+E:\ShareYield\ShareYield\obj\Debug\MainWindow.g.cs
+E:\ShareYield\ShareYield\obj\Debug\App.g.cs
+E:\ShareYield\ShareYield\obj\Debug\ShareYield_MarkupCompile.cache
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.g.resources
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.Properties.Resources.resources
+E:\ShareYield\ShareYield\obj\Debug\ShareYield.csproj.GenerateResource.Cache
