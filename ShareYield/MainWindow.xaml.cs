@@ -12,13 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ShareYield.Objects;
+using ShareYield.Classes;
 using System.Data;
 using System.IO;
 using System.Data.OleDb;
 using System.ComponentModel;
-using ShareYield.Controls;
-using ShareYield.Models;
 
 namespace ShareYield
 {
@@ -40,32 +38,11 @@ namespace ShareYield
                 investment = Double.Parse(investmentText.Text);
             }
 
-            //Process dividend amount list
-            string shareSheet = @"C:\Users\FelixXingyao\Desktop\Share\dividend.xlsx";
-            //string shareSheet = @"E:\\Share\\dividend.xlsx";
-            DataTable dividendTable = new SpreadSheet(shareSheet, "").CurrentSpreadSheet;
-            DataColumn[] dividendKeys = new DataColumn[1];
-            dividendKeys[0] = dividendTable.Columns[0];
-            dividendTable.PrimaryKey = dividendKeys;
-
-            //Process share price list
-            string priceSheet = @"C:\Users\FelixXingyao\Desktop\Share\sharePrice.xlsx";
-            //string priceSheet = @"E:\\Share\\sharePrice.xlsx";
-            DataTable priceTable = new SpreadSheet(priceSheet, "").CurrentSpreadSheet;
-            DataColumn[] priceKeys = new DataColumn[1];
-            priceKeys[0] = priceTable.Columns[0];
-            priceTable.PrimaryKey = priceKeys;
-
-            //Combine two lists
-            DataTable combinedTable = FactoryDataTableParser.combineDataTables(dividendTable, priceTable, investment);
-
-            Share[] shares;
-            FactoryDataTableParser.FillShareList(out shares, combinedTable);
-
-            dataGrid.ItemsSource = shares;
+            ShareList shareList = new ShareList();
+            dataGrid.ItemsSource = shareList.getShares();
         }
 
-        
+
 
         private void dataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {

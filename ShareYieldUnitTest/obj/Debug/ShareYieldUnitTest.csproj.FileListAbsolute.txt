@@ -1,0 +1,8 @@
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\obj\Debug\ShareYieldUnitTest.csprojResolveAssemblyReference.cache
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\bin\Debug\ShareYieldUnitTest.dll
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\bin\Debug\ShareYieldUnitTest.pdb
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\bin\Debug\ShareYield.exe
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\bin\Debug\ShareYield.pdb
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\obj\Debug\ShareYieldUnitTest.dll
+E:\VS Workspace\ShareYield\ShareYieldUnitTest\obj\Debug\ShareYieldUnitTest.pdb

@@ -1,0 +1,13 @@
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\FetchAndSaveStockData.exe.config
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\FetchAndSaveStockData.exe
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\FetchAndSaveStockData.pdb
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\obj\Debug\FetchAndSaveStockData.csprojResolveAssemblyReference.cache
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\obj\Debug\FetchAndSaveStockData.exe
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\obj\Debug\FetchAndSaveStockData.pdb
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\HtmlAgilityPack.dll
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\HtmlAgilityPack.pdb
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\HtmlAgilityPack.xml
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\SharePrice.txt
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\ShareYield.exe
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\ShareYield.pdb
+E:\VS Workspace\ShareYield\FetchAndSaveStockData\bin\Debug\Dividend.txt

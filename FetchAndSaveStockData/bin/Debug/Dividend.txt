@@ -1,0 +1,1532 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>  NZX Main Board
+</title>
+
+  <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/ejsc/EJSChart.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/jquery-ui/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var siteTarget = "/SITE=NZX/AREA=HOME.ITEM";
+    var keyword = '';
+  </script>
+
+  <!-- -From gon gem -->
+  
+  <!-- -From gon gem -->
+
+  <script src="/assets/ejsc/EJSChart.js" type="text/javascript"></script>
+  <script src="/assets/application.js" type="text/javascript"></script>
+  <!--[if lt IE 8]>
+    <script src="/assets/vendor/html5shiv.min.js" type="text/javascript"></script>
+    <link href="/assets/ie8.css" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <script src="/assets/vendor/html5shiv.min.js" type="text/javascript"></script>
+    <link href="/assets/ie9.css" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <script src="/assets/adhub.js" type="text/javascript"></script>
+  
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="MhW7vllQzWfbHu2SvgR/+p0bF7IGS4ITwQ44SwDePr0=" name="csrf-token" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <link href="/assets/apple/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-60x60.png" rel="apple-touch-icon" sizes="60x60" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" type="image/png" />
+
+<link href="/assets/apple/apple-icon-57x57.png" rel="apple-icon" sizes="57x57" type="image/png" />
+<link href="/assets/apple/apple-icon-60x60.png" rel="apple-icon" sizes="60x60" type="image/png" />
+<link href="/assets/apple/apple-icon-72x72.png" rel="apple-icon" sizes="72x72" type="image/png" />
+<link href="/assets/apple/apple-icon-76x76.png" rel="apple-icon" sizes="76x76" type="image/png" />
+<link href="/assets/apple/apple-icon-114x114.png" rel="apple-icon" sizes="114x114" type="image/png" />
+<link href="/assets/apple/apple-icon-120x120.png" rel="apple-icon" sizes="120x120" type="image/png" />
+<link href="/assets/apple/apple-icon-144x144.png" rel="apple-icon" sizes="144x144" type="image/png" />
+<link href="/assets/apple/apple-icon-152x152.png" rel="apple-icon" sizes="152x152" type="image/png" />
+<link href="/assets/apple/apple-icon-180x180.png" rel="apple-icon" sizes="180x180" type="image/png" />
+
+  <meta name="msapplication-config" content="/assets/browserconfig.xml" />
+
+  <meta http-equiv="imagetoolbar" content="no">
+</head>
+
+<body>
+  <section class="interface">
+    <div class="status-bar">
+      <div class="fixed-width">
+        <ul id="featured-indices">
+            <li>
+              <span class="index-name">S&amp;P/NZX 50 </span>
+              6,926 <span class="positive-movement">+0.42%</span>
+            </li>
+            <li>
+              <span class="index-name">S&amp;P/NZX 20 </span>
+              4,955 <span class="positive-movement">+0.49%</span>
+            </li>
+            <li>
+              <span class="index-name">S&amp;P/NZX 10 </span>
+              7,126 <span class="positive-movement">+0.66%</span>
+            </li>
+        </ul>
+
+        <div id="search">
+          <div id="search-form" class="fragment float-right" ng-cloak ng-app="searchApp" ng-controller="searchController" >
+  <form id="search-form" action="/search" method="get">
+    <input ng-model="queryKeyword" ng-change="searchKeyword()" id="search_query" type="search" name="query" method="get" autocomplete="off" placeholder="Search by company name or code" >
+    <input name="authenticity_token" type="hidden" value=MhW7vllQzWfbHu2SvgR/+p0bF7IGS4ITwQ44SwDePr0=>
+    <input type="submit" value="" title="Submit" name="commit">
+  </form>
+
+  <ol id="search-results" class="menu-fragment-children">
+    <li ng-hide="emptyQ('securities')">
+      <div class="hd">securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['securities']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('hybrids')">
+      <div class="hd">Price traded securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['hybrids']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('bonds')">
+      <div class="hd">Yield traded securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['bonds']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('companies')">
+      <div class="hd">companies</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['companies']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('regulators')">
+      <div class="hd">regulators</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['regulators']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+        </div>
+
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com/company/75896" class="linkedin"></a></li>
+          <li><a href="https://twitter.com/NZXGroup" class="twitter"></a></li>
+          <li><a href="https://www.youtube.com/channel/UCZ6mjQForwG_IrR64NZAkOw" class="youtube"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    
+
+    <header class="awesome">
+      <div class="fixed-width">
+      <h1 class="fragment logo-fragment"><a href="/" title="NZX Homepage"></a></h1>
+
+      <div class="awesome-primary">
+        <div class="fragments-wrapper">
+          <div class="fragment expandable-menu-fragment menu-fragment current-fragment">
+            <a href="/markets">Markets</a>
+
+              <ul class="menu-fragment-children">
+                <li class="menu-fragment-child"><a href="/markets/NZSX">NZX Main Board</a></li>
+                <li class="menu-fragment-child"><a href="http://www.nxt.co.nz">NXT Market</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZAX">NZX Alternative Market</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZDX">NZX Debt Market</a></li>
+                <li class="menu-fragment-child"><a href="/derivatives">NZX Derivatives</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZZX">Fonterra Shareholders&#x27; Market</a></li>
+              </ul>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="/regulation">Regulation</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/products">Products</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/services">Services</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/investing">Investing</a>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="http://www.nzxgroup.com">Corporate</a>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="/login">My NZX</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="fixed-width">
+        <header class="headline">
+          <aside class="slice ad-slice leaderboard_ad">
+  <div class="advertisement-text">Advertisement</div>
+  <div ID="DivHeadlineBanner">
+    <script language="javascript" type="text/javascript">
+    aimRenderAd(728, 90, '728x90','HeadlineBanner','');
+    if(!document.all){
+    HeadlineBanner_frame = jQuery("#DivHeadlineBanner")[0];
+    HeadlineBanner_frame.src = HeadlineBanner_frame.src;
+    }</script>
+  </div>
+</aside>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    if ($('#DivHeadlineBanner iframe').length == 0){
+        $("aside").css("display","none");
+        $("aside").parent().addClass("no-ad")
+    }
+});
+</script>
+
+          <div class="current_time">
+            <span class='date'>Sun 03 July</span>
+            <span class='time'>17:02:50 <small>NZST</small></span>
+          </div>
+          <div class="clearfix"></div>
+        </header>
+          <div class="master-detail-screen">
+    <div class="master inset-master">
+          <section class="choice-group"><ul class="choices">
+  <li><a href="/markets/NZSX" class="choice current-choice">NZX Main Board</a></li>
+</ul></section>
+
+<section class="choice-group" id="securities"><ul class="choices">   <li><a href="/markets/NZSX/securities/gainers" class="choice">Gainers</a></li>
+   <li><a href="/markets/NZSX/securities/decliners" class="choice">Decliners</a></li>
+   <li><a href="/markets/NZSX/securities/volumes" class="choice">By Volume</a></li>
+   <li><a href="/markets/NZSX/securities/values" class="choice">By Value</a></li>
+   <li><a href="/markets/NZSX/securities" class="choice">All Securities</a></li>
+</ul></section>
+
+    <section class="choice-group"><ul class="choices">
+        <li><a href="/markets/NZSX/indices/NZ50" class="choice">S&amp;P/NZX 50 </a></li>
+        <li><a href="/markets/NZSX/indices/NZ20" class="choice">S&amp;P/NZX 20 </a></li>
+        <li><a href="/markets/NZSX/indices/ZXV" class="choice">S&amp;P/NZX 15 </a></li>
+        <li><a href="/markets/NZSX/indices/NC50" class="choice">S&amp;P/NZX 50 Portfolio </a></li>
+        <li><a href="/markets/NZSX/indices/NZTS" class="choice">S&amp;P/NZX SciTech </a></li>
+        <li><a href="/markets/NZSX/indices/T10" class="choice">S&amp;P/NZX 10 </a></li>
+        <li><a href="/markets/NZSX/indices/SEMC" class="choice">S&amp;P/NZX MidCap </a></li>
+        <li><a href="/markets/NZSX/indices/SCI" class="choice">S&amp;P/NZX SmallCap </a></li>
+        <li><a href="/markets/NZSX/indices/ALL" class="choice">S&amp;P/NZX All </a></li>
+        <li><a href="/markets/NZSX/indices/AXAS" class="choice">S&amp;P/NZAX All </a></li>
+        <li><a href="/markets/NZSX/indices/MOR" class="choice">S&amp;P/NZX Morrison </a></li>
+</ul></section>
+    <section class="choice-group"><ul class="choices">
+        <li><a href="/markets/NZSX/sectors/G10" class="choice">S&amp;P/NZX All Energy</a></li>
+        <li><a href="/markets/NZSX/sectors/G15" class="choice">S&amp;P/NZX All Materials</a></li>
+        <li><a href="/markets/NZSX/sectors/G20" class="choice">S&amp;P/NZX All Industrials</a></li>
+        <li><a href="/markets/NZSX/sectors/G25" class="choice">S&amp;P/NZX All Consumer Discretionary</a></li>
+        <li><a href="/markets/NZSX/sectors/G30" class="choice">S&amp;P/NZX All Consumer Staples</a></li>
+        <li><a href="/markets/NZSX/sectors/G35" class="choice">S&amp;P/NZX All Health Care</a></li>
+        <li><a href="/markets/NZSX/sectors/G40" class="choice">S&amp;P/NZX All Financials</a></li>
+        <li><a href="/markets/NZSX/sectors/G45" class="choice">S&amp;P/NZX All Information Technology</a></li>
+        <li><a href="/markets/NZSX/sectors/G50" class="choice">S&amp;P/NZX All Telecommunication Services</a></li>
+        <li><a href="/markets/NZSX/sectors/G55" class="choice">S&amp;P/NZX All Utilities</a></li>
+        <li><a href="/markets/NZSX/sectors/NZRE" class="choice">S&amp;P/NZX All Real Estate</a></li>
+</ul></section>
+<section class="choice-group" id="rest-of-it"><ul class="choices">
+  <li><a href="/markets/NZSX/announcements" class="choice">Market Announcements</a></li>
+  <li><a href="/markets/NZSX/trading_hours" class="choice">Trading Hours</a></li>
+  <li><a href="/investing/find_a_participant" class="choice">Find an NZX Participant</a></li>
+</ul></section>
+    <aside class="slice ad-slice skyscraper_ad">
+  <div class="advertisement-text">Advertisement</div>
+  <div ID="DivSkyScraper">
+    <script language="javascript" type="text/javascript">
+    aimRenderAd(160, 600, '160x600','SkyScraper','');
+    if(!document.all){
+    SkyScraper_frame = jQuery("#SkyScraper")[0];
+    SkyScraper_frame.src = SkyScraper_frame.src;
+    }</script>
+  </div>
+</aside>
+<script type="text/javascript">
+$(document).ready(function() {
+    if ($('#DivSkyScraper iframe').length == 0){
+        $("aside").css("display","none");
+    }
+});
+</script>
+
+
+    </div>
+    <div class="detail">
+        <header class="topic">
+    <h2>
+      NZX Main Board (NZSX)
+      
+
+      
+
+      
+    </h2>
+      <ul class="social-buttons">
+  <li>
+    <!-- Twitter Button -->
+    <a href="https://twitter.com/nzxgroup" class="twitter-follow-button" data-show-count="false">@nzxgroup</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </li>
+  <li>
+    <!-- Google Plus Button -->
+    <div class="g-follow" style='display:inline;' data-annotation="none" data-height="20" data-href="https://plus.google.com/118307773280354179225" data-rel="publisher"></div>
+  </li>
+  <li>
+    <!-- LinkedIn Button -->
+    <script src="//platform.linkedin.com/in.js" type="text/javascript">
+      lang: en_US
+    </script>
+    <script type="IN/FollowCompany" data-id="75896" data-counter="none"></script>
+  </li>
+</ul>
+
+
+  </header>
+
+
+      
+
+
+
+
+
+
+<section id="description" class="screen">
+  <p>The NZX Main Board (NZSX) is our original equities market and home for New Zealand’s best known brands and companies.</p>
+</section>
+
+<div class="inset row">
+  <div class="col span1of3">
+    <section class="mini-table-screen table-screen screen snapshot">
+  <header>
+    <h2>Market Snapshot</h2>
+  </header>
+  <table>
+    <tbody>
+        <tr>
+          <th>Capitalisation (000s)</th>
+          <td id="capitalisation" class="numeric">$117,565,884</td>
+        </tr>
+      <tr>
+        <th>Trade Volume</th>
+        <td id="trade-volume" class="numeric">70,699,535</td>
+      </tr>
+      <tr>
+        <th>Trade Count</th>
+        <td id="trade-count" class="numeric">6,089</td>
+      </tr>
+      <tr>
+        <th>Instruments Listed</th>
+        <td id="instrument-count" class="numeric">176</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+  </div>
+
+  <div class="col span1of3">
+    <section class="mini-table-screen table-screen screen" id="todays-gainers">
+    <header>
+      <h2>Today&rsquo;s Gainers</h2>
+    </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th class="numeric">Last</th>
+        <th class="numeric">Move</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><a href="/markets/NZSX/securities/PPL">PPL</a></td>
+            <td class="numeric">0.068</td>
+          <td class="numeric"><span class="positive-movement">$0.008 / 13.33%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/KFLWD">KFLWD</a></td>
+            <td class="numeric">0.045</td>
+          <td class="numeric"><span class="positive-movement">$0.005 / 12.50%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/BLT">BLT</a></td>
+            <td class="numeric">0.037</td>
+          <td class="numeric"><span class="positive-movement">$0.004 / 12.12%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/SLG">SLG</a></td>
+            <td class="numeric">0.115</td>
+          <td class="numeric"><span class="positive-movement">$0.010 / 9.52%</span></td>
+        </tr>
+    </tbody>
+  </table>
+</section>
+
+  </div>
+
+  <div class="col span1of3">
+    <section class="mini-table-screen table-screen screen" id="todays-decliners">
+    <header>
+      <h2>Today&rsquo;s Decliners</h2>
+    </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th class="numeric">Last</th>
+        <th class="numeric">Move</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><a href="/markets/NZSX/securities/NTL">NTL</a></td>
+            <td class="numeric">0.007</td>
+          <td class="numeric"><span class="negative-movement">-$0.001 / -12.50%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/SEA">SEA</a></td>
+            <td class="numeric">0.012</td>
+          <td class="numeric"><span class="negative-movement">-$0.001 / -7.69%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/VHPRC">VHPRC</a></td>
+            <td class="numeric">0.102</td>
+          <td class="numeric"><span class="negative-movement">-$0.008 / -7.27%</span></td>
+        </tr>
+        <tr>
+          <td><a href="/markets/NZSX/securities/NWF">NWF</a></td>
+            <td class="numeric">0.092</td>
+          <td class="numeric"><span class="negative-movement">-$0.007 / -7.07%</span></td>
+        </tr>
+    </tbody>
+  </table>
+</section>
+
+  </div>
+
+</div>
+
+  <div class="announcements table-screen screen announcement-section">
+    <header>
+      <h2>Recent Announcements</h2>
+      <span><a href="/markets/NZSX/announcements">View more announcements</a></span>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th class="announcement-code">Code</th>
+          <th class="announcement-title">Title</th>
+          <th class="sort-column announcement-date">Date</th>
+          <th class="announcement-type">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+<tr>
+    <td><a href="/regulators/NZXR">NZXR</a></td>
+  <td title="Marlin Global Limited (“MLNWB”) - Final Exercise Date"><a href="/regulators/NZXR/announcements/285104" class="">Marlin Global Limited (“MLNWB”) - Final Exercis...</a></td>
+  <td class="date-cell">1 Jul 2016,  5:17pm</td>
+  <td>MEMO</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/MLN">MLN</a></td>
+  <td title="Marlin Global Limited (“MLNWB”) - Final Exercise Date"><a href="/companies/MLN/announcements/285105" class="">Marlin Global Limited (“MLNWB”) - Final Exercis...</a></td>
+  <td class="date-cell">1 Jul 2016,  5:17pm</td>
+  <td>MEMO</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/ANZ">ANZ</a></td>
+  <td title="ANZ Key Dates - Second Half Financial Year 2016"><a href="/companies/ANZ/announcements/285103" class="">ANZ Key Dates - Second Half Financial Year 2016</a></td>
+  <td class="date-cell">1 Jul 2016,  5:07pm</td>
+  <td>KEYDATES</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/VHP">VHP</a></td>
+  <td title="New 30-year lease at Kensington Hospital, Boulcott settled "><a href="/companies/VHP/announcements/285102" class="">New 30-year lease at Kensington Hospital, Boulc...</a></td>
+  <td class="date-cell">1 Jul 2016,  4:59pm</td>
+  <td>GENERAL</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/PEB">PEB</a></td>
+  <td title="Ongoing Disclosure Notice - Chris Swann"><a href="/companies/PEB/announcements/285101" class="">Ongoing Disclosure Notice - Chris Swann</a></td>
+  <td class="date-cell">1 Jul 2016,  4:46pm</td>
+  <td>RELINT</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/FRE">FRE</a></td>
+  <td title="Redemption of Partly-Paid Ordinary Shares"><a href="/companies/FRE/announcements/285100" class="">Redemption of Partly-Paid Ordinary Shares</a></td>
+  <td class="date-cell">1 Jul 2016,  4:14pm</td>
+  <td>GENERAL</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/HBY">HBY</a></td>
+  <td title="Hellaby - Notificiation of Issue of Securities"><a href="/companies/HBY/announcements/285099" class="">Hellaby - Notificiation of Issue of Securities</a></td>
+  <td class="date-cell">1 Jul 2016,  4:05pm</td>
+  <td>ALLOT</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/ZEL">ZEL</a></td>
+  <td title="Summary of Z Energy AGM votes"><a href="/companies/ZEL/announcements/285098" class="">Summary of Z Energy AGM votes</a></td>
+  <td class="date-cell">1 Jul 2016,  4:05pm</td>
+  <td>MEETING</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/HBY">HBY</a></td>
+  <td title="Hellaby - Acquisition of TBS Group Limited"><a href="/companies/HBY/announcements/285097" class="">Hellaby - Acquisition of TBS Group Limited</a></td>
+  <td class="date-cell">1 Jul 2016,  4:04pm</td>
+  <td>ASSET</td>
+</tr>
+
+<tr>
+    <td><a href="/markets/NZSX/securities/PEB">PEB</a></td>
+  <td title="Ongoing Disclosure Notice for David Darling"><a href="/companies/PEB/announcements/285094" class="">Ongoing Disclosure Notice for David Darling</a></td>
+  <td class="date-cell">1 Jul 2016,  3:53pm</td>
+  <td>RELINT</td>
+</tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="price-sensitive-explanatory">
+    <img alt="P" src="/assets/price-sensitive-flag-mini.png" /> Denotes Price Sensitive announcements
+  </div>
+
+<section id="dividends" class="screen table-screen">
+    <header>
+      <h2>Upcoming Dividends</h2>
+    </header>
+
+    <table class="upcoming_listings_table">
+      <thead class="upcoming_listings_table_head">
+        <tr>
+          <th class="code ">Code</th>
+          <th class=" sort-column board-table">Ex Dividend</th>
+          <th class=" ">Period</th>
+          <th class="numeric ">Amount</th>
+          <th class="numeric ">Supp.</th>
+          <th class="numeric ">Imputation</th>
+          <th class=" ">Payable</th>
+          <th class=" ">Currency</th>
+        </tr>
+      </thead>
+      <tbody class="upcoming_listings_table_body">
+        <tr>
+    <td class="code"><a href="/markets/NZSX/securities/WBC">WBC</a></td>
+  <td>12/05/2016</td>
+  <td>Interim</td>
+  <td class="numeric">94.000c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">7.000c</td>
+  <td>04/07/2016</td>
+  <td>AUD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/FPH">FPH</a></td>
+  <td>16/06/2016</td>
+  <td>Final</td>
+  <td class="numeric">10.000c</td>
+  <td class="numeric">1.765c</td>
+  <td class="numeric">3.889c</td>
+  <td>08/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/TEM">TEM</a></td>
+  <td>16/06/2016</td>
+  <td>Final</td>
+  <td class="numeric">8.250c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>22/07/2016</td>
+  <td>GBP</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/AWF">AWF</a></td>
+  <td>24/06/2016</td>
+  <td>Final</td>
+  <td class="numeric">8.000c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">3.111c</td>
+  <td>04/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/SCL">SCL</a></td>
+  <td>28/06/2016</td>
+  <td>Final</td>
+  <td class="numeric">6.500c</td>
+  <td class="numeric">1.147c</td>
+  <td class="numeric">2.528c</td>
+  <td>08/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/NZC">NZC</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">1.797c</td>
+  <td class="numeric">0.196c</td>
+  <td class="numeric">0.433c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/GBF">GBF</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">1.443c</td>
+  <td class="numeric">0.255c</td>
+  <td class="numeric">0.561c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/SRF">SRF</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">1.080c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.420c</td>
+  <td>14/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/ASD">ASD</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">2.194c</td>
+  <td class="numeric">0.387c</td>
+  <td class="numeric">0.853c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/NPF">NPF</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">1.108c</td>
+  <td class="numeric">0.103c</td>
+  <td class="numeric">0.228c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/NZB">NZB</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">1.611c</td>
+  <td class="numeric">0.284c</td>
+  <td class="numeric">0.626c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/PBG">PBG</a></td>
+  <td>29/06/2016</td>
+  <td>Special</td>
+  <td class="numeric">9.400c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>07/07/2016</td>
+  <td>AUD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/ASF">ASF</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">4.628c</td>
+  <td class="numeric">0.817c</td>
+  <td class="numeric">1.800c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/DIV">DIV</a></td>
+  <td>29/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">2.153c</td>
+  <td class="numeric">0.380c</td>
+  <td class="numeric">0.837c</td>
+  <td>20/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/FCT">FCT</a></td>
+  <td>30/06/2016</td>
+  <td>Interim</td>
+  <td class="numeric">2.350c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>01/08/2016</td>
+  <td>GBP</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/MPG">MPG</a></td>
+  <td>07/07/2016</td>
+  <td>Final</td>
+  <td class="numeric">4.000c</td>
+  <td class="numeric">0.706c</td>
+  <td class="numeric">1.556c</td>
+  <td>25/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/MFT">MFT</a></td>
+  <td>14/07/2016</td>
+  <td>Final</td>
+  <td class="numeric">23.000c</td>
+  <td class="numeric">4.059c</td>
+  <td class="numeric">8.944c</td>
+  <td>22/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/TNR">TNR</a></td>
+  <td>20/07/2016</td>
+  <td>Final</td>
+  <td class="numeric">7.000c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>28/07/2016</td>
+  <td>NZD</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/TCL">TCL</a></td>
+  <td>28/07/2016</td>
+  <td>Final</td>
+  <td class="numeric">4.050c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>31/08/2016</td>
+  <td>GBP</td>
+</tr>
+<tr>
+    <td class="code"><a href="/markets/NZSX/securities/SCY">SCY</a></td>
+  <td>04/08/2016</td>
+  <td>Final</td>
+  <td class="numeric">2.500c</td>
+  <td class="numeric">0.000c</td>
+  <td class="numeric">0.000c</td>
+  <td>12/08/2016</td>
+  <td>NZD</td>
+</tr>
+
+      </tbody>
+    </table>
+
+</section>
+
+
+
+<section id='listings' class='screen table-screen'>
+  <h2>Upcoming Listings</h2>
+  <span class="upcoming_listings_more_link_span"><a href="/upcoming_listings">More Listing Information</a></span>
+
+    <table class="upcoming_listings_table">
+      <thead class="upcoming_listings_table_head">
+        <tr>
+            <th>Company Code</th>
+            <th>Company Name</th>
+          <th>Security Code</th>
+          <th>Proposed Listing Date</th>
+        </tr>
+      </thead>
+      <tbody class="upcoming_listings_table_body">
+          <tr>
+              <td>MHJ</td>
+              <td>Michael Hill International Limited</td>
+            <td>MHJ</td>
+            <td>07/07/2016</td>
+          </tr>
+          <tr>
+              <td>IPL</td>
+              <td>Investore Property Limited</td>
+            <td>IPL</td>
+            <td>12/07/2016</td>
+          </tr>
+          <tr>
+              <td>SPG</td>
+              <td>Stride Stapled Group</td>
+            <td>SPG</td>
+            <td>12/07/2016</td>
+          </tr>
+      </tbody>
+    </table>
+</section>
+
+
+<section id='meetings' class='screen table-screen'>
+  <h2>Upcoming Meetings</h2>
+
+    <table class="upcoming_listings_table">
+      <thead class="upcoming_listings_table_head">
+        <tr>
+            <th>Company</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody class="upcoming_listings_table_body">
+          <tr>
+              <td><a href="/companies/SKT">SKT</a></td>
+            <td>SSM</td>
+            <td>
+              06/07/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                The Pullman Hotel (Regatta Room D)<br /> Corner Princes Street and Waterloo Quadrant<br /> Auckland 1010
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/TRS">TRS</a></td>
+            <td>SSM</td>
+            <td>
+              13/07/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                Jubilee Building<br /> 545 Parnell Road<br /> Parnell<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/PAY">PAY</a></td>
+            <td>AGM</td>
+            <td>
+              14/07/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                Conference Centre<br /> Level 2<br /> 167 Victoria Street West<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/TEM">TEM</a></td>
+            <td>AGM</td>
+            <td>
+              15/07/2016
+            </td>
+            <td>
+                12.00 PM
+            </td>
+            <td>
+                Stationers&#x27; Hall<br /> Ave Maria Lane<br /> London
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/XRO">XRO</a></td>
+            <td>AGM</td>
+            <td>
+              20/07/2016
+            </td>
+            <td>
+                11.00 AM
+            </td>
+            <td>
+                Establishment Rooms I<br /> II and III<br /> Level 3<br /> Establishment<br /> 252 George Street<br /> Sydney<br /> Australia
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/RBD">RBD</a></td>
+            <td>AGM</td>
+            <td>
+              22/07/2016
+            </td>
+            <td>
+                11.00 AM
+            </td>
+            <td>
+                Great Northern Room<br /> Level 1<br /> Ellerslie Events Centre<br /> 80-100 Ascot Avenue<br /> Greenlane<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AFI">AFI</a></td>
+            <td>FLLYR</td>
+            <td>
+              25/07/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AOR">AOR</a></td>
+            <td>AGM</td>
+            <td>
+              26/07/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/RYM">RYM</a></td>
+            <td>AGM</td>
+            <td>
+              27/07/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                Jane Mander Retirement Village<br /> 262 Fairway Drive<br /> Whangarei
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/GMT">GMT</a></td>
+            <td>AGM</td>
+            <td>
+              27/07/2016
+            </td>
+            <td>
+                13.30 PM
+            </td>
+            <td>
+                Pullman Hotel<br /> Corner Princes Street and Waterloo Quandrant<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AWF">AWF</a></td>
+            <td>AGM</td>
+            <td>
+              27/07/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MAD">MAD</a></td>
+            <td>AGM</td>
+            <td>
+              28/07/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                The Chateau on the Park Hotel and Conference Centre<br /> Corner Deans Avenue and Kilmarnock Street<br /> Christchurch
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MAD">MAD</a></td>
+            <td>AGM</td>
+            <td>
+              28/07/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                The Chateau on the Park<br /> Hotel and Conference Centre<br /> Corner Deans Avenue and Kilmarnock Street<br /> Riccarton<br /> Christchurch
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MFT">MFT</a></td>
+            <td>AGM</td>
+            <td>
+              28/07/2016
+            </td>
+            <td>
+                16.00 PM
+            </td>
+            <td>
+                Orakei Bay Centre<br /> 231 Orakei Road<br /> Remuera<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/KPG">KPG</a></td>
+            <td>AGM</td>
+            <td>
+              29/07/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                Cinema 6<br /> Reading Cinemas<br /> 3058 Great North Road<br /> New Lynn<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/KFL">KFL</a></td>
+            <td>AGM</td>
+            <td>
+              29/07/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                Guines Room 1<br /> Ellerslie Event Centre<br /> Greenlane<br /> Auckland 
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/BIL">BIL</a></td>
+            <td>AGM</td>
+            <td>
+              29/07/2016
+            </td>
+            <td>
+                11.00 AM
+            </td>
+            <td>
+                Holy Trinity Cathedral Visitor&#x27;s Centre<br /> corner St Stephens Ave &amp; Parnell Road<br /> Parnell<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MOA">MOA</a></td>
+            <td>AGM</td>
+            <td>
+              29/07/2016
+            </td>
+            <td>
+                14.30 PM
+            </td>
+            <td>
+                70 Richmond Road<br /> Grey Lynn<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/BLT">BLT</a></td>
+            <td>AGM</td>
+            <td>
+              29/07/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                Dunedin
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/GXH">GXH</a></td>
+            <td>AGM</td>
+            <td>
+              02/08/2016
+            </td>
+            <td>
+                14.30 PM
+            </td>
+            <td>
+                Ellerslie Event Centre<br /> 80 Ascot Avenue<br /> Greenlane<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AFT">AFT</a></td>
+            <td>AGM</td>
+            <td>
+              05/08/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                Takapuna Boating Club<br /> 39 The Strand<br /> Takapuna
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/ARG">ARG</a></td>
+            <td>AGM</td>
+            <td>
+              09/08/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                The Royal New Zealand Yacht Squadron<br /> 101 Curran Street<br /> Westhaven Marina<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/CEN">CEN</a></td>
+            <td>FLLYR</td>
+            <td>
+              15/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/TME">TME</a></td>
+            <td>FLLYR</td>
+            <td>
+              18/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/ARV">ARV</a></td>
+            <td>AGM</td>
+            <td>
+              19/08/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                Stamford Plaza<br /> 22-26 Albert St<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/NPT">NPT</a></td>
+            <td>AGM</td>
+            <td>
+              19/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/SKO">SKO</a></td>
+            <td>AGM</td>
+            <td>
+              23/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MRP">MRP</a></td>
+            <td>FLLYR</td>
+            <td>
+              23/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/IFT">IFT</a></td>
+            <td>AGM</td>
+            <td>
+              24/08/2016
+            </td>
+            <td>
+                14.30 PM
+            </td>
+            <td>
+                Amora Suites<br /> Amora Hotel<br /> 170 Wakefield Street<br /> Wellington
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MEL">MEL</a></td>
+            <td>FLLYR</td>
+            <td>
+              24/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/MPG">MPG</a></td>
+            <td>AGM</td>
+            <td>
+              24/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AUG">AUG</a></td>
+            <td>AGM</td>
+            <td>
+              25/08/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                Northern Club<br /> 19 Princes Street<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/EVO">EVO</a></td>
+            <td>AGM</td>
+            <td>
+              25/08/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                Level 11<br /> 80 Queen Street<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/PEB">PEB</a></td>
+            <td>AGM</td>
+            <td>
+              25/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                Dunedin
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/HBY">HBY</a></td>
+            <td>FLLYR</td>
+            <td>
+              25/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/STR">STR</a></td>
+            <td>AGM</td>
+            <td>
+              29/08/2016
+            </td>
+            <td>
+                11.00 AM
+            </td>
+            <td>
+                The Pakuranga Hunt Room<br /> Ellerslie Racecourse<br /> 80-100 Ascot Avenue<br /> Greenlane<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/SPY">SPY</a></td>
+            <td>AGM</td>
+            <td>
+              31/08/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                The Maritime Room<br /> 149 Quay Street<br /> Viaduct Harbour<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/NZR">NZR</a></td>
+            <td>HALFYR</td>
+            <td>
+              31/08/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/SCY">SCY</a></td>
+            <td>AGM</td>
+            <td>
+              08/09/2016
+            </td>
+            <td>
+                10.30 AM
+            </td>
+            <td>
+                Commodore Airport Hotel<br /> 449 Memorial Avenue<br /> Burnside<br /> Christchurch in the Head of the Avon Function Lounge
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/RAK">RAK</a></td>
+            <td>AGM</td>
+            <td>
+              16/09/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                Rangitoto Room<br /> Level 2<br /> ANZ Viaduct Events Centre<br /> 161 Halsey Street<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/HBY">HBY</a></td>
+            <td>AGM</td>
+            <td>
+              10/10/2016
+            </td>
+            <td>
+                14.00 PM
+            </td>
+            <td>
+                ANZ Viaduct Events Centre<br /> Rangitoto Rooms<br /> Level 2<br /> 161 Halsey Street<br /> Auckland
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/AFI">AFI</a></td>
+            <td>AGM</td>
+            <td>
+              12/10/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                RACV City Club<br /> 501 Bourke Street<br /> Melbourne
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/ANZ">ANZ</a></td>
+            <td>FLLYR</td>
+            <td>
+              03/11/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                <span class="unknown">&ndash;</span>
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/WBC">WBC</a></td>
+            <td>AGM</td>
+            <td>
+              09/12/2016
+            </td>
+            <td>
+                10.00 AM
+            </td>
+            <td>
+                 Adelaide Convention Centre<br /> North Terrace<br /> Adelaide
+            </td>
+          </tr>
+          <tr>
+              <td><a href="/companies/ANZ">ANZ</a></td>
+            <td>AGM</td>
+            <td>
+              16/12/2016
+            </td>
+            <td>
+                TBA
+            </td>
+            <td>
+                Melbourne
+            </td>
+          </tr>
+      </tbody>
+    </table>
+</section>
+
+
+    </div>
+  </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <footer class="foot fixed-width ">
+      <nav class="grid">
+        <div class="footer-grid">
+          <div class="footer-row">
+            <ul>
+              <li><h3>Markets</h3></li>
+
+              <li><a href="/markets/NZSX">NZX Main Board</a></li>
+              <li><a href="/markets/NZAX">NZX Alternative Market</a></li>
+              <li><a href="/markets/NZDX">NZX Debt Market</a></li>
+              <li><a href="/markets/NZZX">Fonterra Shareholders&#x27; Market</a></li>
+              <li><a href="/Derivatives">NZX Derivatives</a></li>
+              <li><a href="/data-policies">Data Glossary</a></li>
+            </ul>
+            <ul>
+              <li><h3>Regulation</h3></li>
+
+              <li><a href="/regulation">NZX Regulation</a></li>
+              <li><a href="/regulation/rules">Rules</a></li>
+              <li><a href="/NZMDT">NZMDT</a></li>
+              <li><a href="/regulation/complaints">Complaints &amp; Tips</a></li>
+              <li><a href="/regulation/faqs">FAQs</a></li>
+              <li><a href="/regulation/contact">Contact Us</a></li>
+            </ul>
+            <ul>
+
+              <li><h3>Products</h3></li>
+
+              <li><a href="/products">Products Overview</a></li>
+                <li><a href="/products/agrifax">AgriHQ</a></li>
+              <li><a href="/products/fundsource">FundSource</a></li>
+              <li><a href="/products/nzx-agri">NZX Agri</a></li>
+              <li><a href="/products/nzx-info">NZX Info</a></li>
+              <li><a href="/products/smartshares">Exchange Traded Funds (ETFs)</a></li>
+              <li><a href="/products/virtual-trading">NZX virtualTrading</a>
+
+            </ul>
+            <ul>
+              <li><h3>Services</h3></li>
+
+          <li><a href="/services">Services Overview</a></li>
+              <li><a href="/services/listing_sx_dx">Listing on the SX or DX</a></li>
+              <li><a href="/services/listing_fees">Listing Fees</a></li>
+              <li><a href="/services/become_a_participant">Become a Participant</a></li>
+              <li><a href="/services/become_a_vendor">Become a Data Vendor</a></li>
+            </ul>
+            <ul>
+              <li><h3>Investing</h3></li>
+
+              <li><a href="/investing">Investing Overview</a></li>
+              <li><a href="/investing/find_a_participant">Find a Participant</a></li>
+              <li><a href="/upcoming_listings">Upcoming Listings</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <p>&copy; Copyright 2016 NZX Limited | Market data delayed by 20 minutes | <a href="/terms">Terms of Use &amp; Privacy Policy</a> | <a href="/sitemap">Site Map</a> | <a href="/contact">Contact Us</a> | <a href="/advertising">Advertising</a> | <a href="http://www.nzxgroup.com">Corporate Info</a></p>
+      <a href="/" class="footer-logo"><img alt="NZX" height="20" src="/assets/footer-logo.png" width="70" /></a>
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+
+  </section>
+  <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+
+  <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2196699-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+<!-- BEGIN EFFECTIVE MEASURE CODE -->
+<!-- COPYRIGHT EFFECTIVE MEASURE -->
+<script type="text/javascript">
+  (function() {
+    var em = document.createElement('script'); em.type = 'text/javascript'; em.async = true;
+    em.src = ('https:' == document.location.protocol ? 'https://nz-ssl' : 'http://nz-cdn') + '.effectivemeasure.net/em.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(em, s);
+  })();
+</script>
+<noscript>
+  <img src="//nz.effectivemeasure.net/em_image" alt="" style="position:absolute; left:-5px;" />
+</noscript>
+<!--END EFFECTIVE MEASURE CODE -->
+
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="//secure-nz.imrworldwide.com/v60.js">
+</script>
+
+<script type="text/javascript">
+  var pvar = { cid: "nz-adhub", content: "0", server: "secure-nz" };
+  var trac = nol_t(pvar);
+  trac.record().post();
+</script>
+
+<noscript>
+ <div>
+   <img src="//secure-nz.imrworldwide.com/cgi-bin/m?ci=nz-adhub&amp;cg=0&amp;cc=1&amp;ts=noscript" width="1" height="1" alt="" />
+ </div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+<script src="/assets/out_bound_analytics.js" type="text/javascript"></script>
+
+</body>
+</html>
+

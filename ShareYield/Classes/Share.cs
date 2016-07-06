@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShareYield.Objects
+namespace ShareYield.Classes
 {
-    class Share
+    public class Share
     {
         [ColumnName("Code")]
         public string shareCode { get; set; }
@@ -18,8 +18,6 @@ namespace ShareYield.Objects
         public string payDividendDate { get; set; }
         [ColumnName("Amount")]
         public string amount { get; set; }
-        [ColumnName("Franking")]
-        public string franking { get; set; }
         [ColumnName("Price")]
         public string price { get; set; }
         [ColumnName("Yield")]

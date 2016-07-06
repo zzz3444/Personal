@@ -1,0 +1,2209 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>  NZX Main Board | All Securities
+</title>
+
+  <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/ejsc/EJSChart.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/jquery-ui/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var siteTarget = "/SITE=NZX/AREA=HOME.ITEM";
+    var keyword = '';
+  </script>
+
+  <!-- -From gon gem -->
+  
+  <!-- -From gon gem -->
+
+  <script src="/assets/ejsc/EJSChart.js" type="text/javascript"></script>
+  <script src="/assets/application.js" type="text/javascript"></script>
+  <!--[if lt IE 8]>
+    <script src="/assets/vendor/html5shiv.min.js" type="text/javascript"></script>
+    <link href="/assets/ie8.css" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <script src="/assets/vendor/html5shiv.min.js" type="text/javascript"></script>
+    <link href="/assets/ie9.css" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <script src="/assets/adhub.js" type="text/javascript"></script>
+  
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="rYvnmks0nexsWJHeQy4tfIIqkFuQ/thaujTiALMikas=" name="csrf-token" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <link href="/assets/apple/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-60x60.png" rel="apple-touch-icon" sizes="60x60" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" type="image/png" />
+<link href="/assets/apple/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" type="image/png" />
+
+<link href="/assets/apple/apple-icon-57x57.png" rel="apple-icon" sizes="57x57" type="image/png" />
+<link href="/assets/apple/apple-icon-60x60.png" rel="apple-icon" sizes="60x60" type="image/png" />
+<link href="/assets/apple/apple-icon-72x72.png" rel="apple-icon" sizes="72x72" type="image/png" />
+<link href="/assets/apple/apple-icon-76x76.png" rel="apple-icon" sizes="76x76" type="image/png" />
+<link href="/assets/apple/apple-icon-114x114.png" rel="apple-icon" sizes="114x114" type="image/png" />
+<link href="/assets/apple/apple-icon-120x120.png" rel="apple-icon" sizes="120x120" type="image/png" />
+<link href="/assets/apple/apple-icon-144x144.png" rel="apple-icon" sizes="144x144" type="image/png" />
+<link href="/assets/apple/apple-icon-152x152.png" rel="apple-icon" sizes="152x152" type="image/png" />
+<link href="/assets/apple/apple-icon-180x180.png" rel="apple-icon" sizes="180x180" type="image/png" />
+
+  <meta name="msapplication-config" content="/assets/browserconfig.xml" />
+
+  <meta http-equiv="imagetoolbar" content="no">
+</head>
+
+<body>
+  <section class="interface">
+    <div class="status-bar">
+      <div class="fixed-width">
+        <ul id="featured-indices">
+            <li>
+              <span class="index-name">S&amp;P/NZX 50 </span>
+              6,926 <span class="positive-movement">+0.42%</span>
+            </li>
+            <li>
+              <span class="index-name">S&amp;P/NZX 20 </span>
+              4,955 <span class="positive-movement">+0.49%</span>
+            </li>
+            <li>
+              <span class="index-name">S&amp;P/NZX 10 </span>
+              7,126 <span class="positive-movement">+0.66%</span>
+            </li>
+        </ul>
+
+        <div id="search">
+          <div id="search-form" class="fragment float-right" ng-cloak ng-app="searchApp" ng-controller="searchController" >
+  <form id="search-form" action="/search" method="get">
+    <input ng-model="queryKeyword" ng-change="searchKeyword()" id="search_query" type="search" name="query" method="get" autocomplete="off" placeholder="Search by company name or code" >
+    <input name="authenticity_token" type="hidden" value=rYvnmks0nexsWJHeQy4tfIIqkFuQ/thaujTiALMikas=>
+    <input type="submit" value="" title="Submit" name="commit">
+  </form>
+
+  <ol id="search-results" class="menu-fragment-children">
+    <li ng-hide="emptyQ('securities')">
+      <div class="hd">securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['securities']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('hybrids')">
+      <div class="hd">Price traded securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['hybrids']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('bonds')">
+      <div class="hd">Yield traded securities</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['bonds']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('companies')">
+      <div class="hd">companies</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['companies']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+
+    <li ng-hide="emptyQ('regulators')">
+      <div class="hd">regulators</div>
+      <ol id="search-results-companies" ng-repeat="item in searchResults['regulators']">
+        <li class="menu-fragment-child">
+          <a href="{{item.url}}"> <strong>{{item.code}}</strong> {{item.name}} </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+        </div>
+
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com/company/75896" class="linkedin"></a></li>
+          <li><a href="https://twitter.com/NZXGroup" class="twitter"></a></li>
+          <li><a href="https://www.youtube.com/channel/UCZ6mjQForwG_IrR64NZAkOw" class="youtube"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    
+
+    <header class="awesome">
+      <div class="fixed-width">
+      <h1 class="fragment logo-fragment"><a href="/" title="NZX Homepage"></a></h1>
+
+      <div class="awesome-primary">
+        <div class="fragments-wrapper">
+          <div class="fragment expandable-menu-fragment menu-fragment current-fragment">
+            <a href="/markets">Markets</a>
+
+              <ul class="menu-fragment-children">
+                <li class="menu-fragment-child"><a href="/markets/NZSX">NZX Main Board</a></li>
+                <li class="menu-fragment-child"><a href="http://www.nxt.co.nz">NXT Market</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZAX">NZX Alternative Market</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZDX">NZX Debt Market</a></li>
+                <li class="menu-fragment-child"><a href="/derivatives">NZX Derivatives</a></li>
+                <li class="menu-fragment-child"><a href="/markets/NZZX">Fonterra Shareholders&#x27; Market</a></li>
+              </ul>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="/regulation">Regulation</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/products">Products</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/services">Services</a>
+          </div>
+
+          <div class="fragment menu-fragment ">
+            <a href="/investing">Investing</a>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="http://www.nzxgroup.com">Corporate</a>
+          </div>
+
+          <div class="fragment menu-fragment">
+            <a href="/login">My NZX</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="fixed-width">
+        <header class="headline">
+          <aside class="slice ad-slice leaderboard_ad">
+  <div class="advertisement-text">Advertisement</div>
+  <div ID="DivHeadlineBanner">
+    <script language="javascript" type="text/javascript">
+    aimRenderAd(728, 90, '728x90','HeadlineBanner','');
+    if(!document.all){
+    HeadlineBanner_frame = jQuery("#DivHeadlineBanner")[0];
+    HeadlineBanner_frame.src = HeadlineBanner_frame.src;
+    }</script>
+  </div>
+</aside>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    if ($('#DivHeadlineBanner iframe').length == 0){
+        $("aside").css("display","none");
+        $("aside").parent().addClass("no-ad")
+    }
+});
+</script>
+
+          <div class="current_time">
+            <span class='date'>Sun 03 July</span>
+            <span class='time'>16:49:09 <small>NZST</small></span>
+          </div>
+          <div class="clearfix"></div>
+        </header>
+          <div class="master-detail-screen">
+    <div class="master inset-master">
+        <section class="choice-group"><ul class="choices">
+  <li><a href="/markets/NZSX" class="choice">NZX Main Board</a></li>
+</ul></section>
+
+<section class="choice-group" id="securities"><ul class="choices">   <li><a href="/markets/NZSX/securities/gainers" class="choice">Gainers</a></li>
+   <li><a href="/markets/NZSX/securities/decliners" class="choice">Decliners</a></li>
+   <li><a href="/markets/NZSX/securities/volumes" class="choice">By Volume</a></li>
+   <li><a href="/markets/NZSX/securities/values" class="choice">By Value</a></li>
+   <li><a href="/markets/NZSX/securities" class="choice current-choice">All Securities</a></li>
+</ul></section>
+
+    <section class="choice-group"><ul class="choices">
+        <li><a href="/markets/NZSX/indices/NZ50" class="choice">S&amp;P/NZX 50 </a></li>
+        <li><a href="/markets/NZSX/indices/NZ20" class="choice">S&amp;P/NZX 20 </a></li>
+        <li><a href="/markets/NZSX/indices/ZXV" class="choice">S&amp;P/NZX 15 </a></li>
+        <li><a href="/markets/NZSX/indices/NC50" class="choice">S&amp;P/NZX 50 Portfolio </a></li>
+        <li><a href="/markets/NZSX/indices/NZTS" class="choice">S&amp;P/NZX SciTech </a></li>
+        <li><a href="/markets/NZSX/indices/T10" class="choice">S&amp;P/NZX 10 </a></li>
+        <li><a href="/markets/NZSX/indices/SEMC" class="choice">S&amp;P/NZX MidCap </a></li>
+        <li><a href="/markets/NZSX/indices/SCI" class="choice">S&amp;P/NZX SmallCap </a></li>
+        <li><a href="/markets/NZSX/indices/ALL" class="choice">S&amp;P/NZX All </a></li>
+        <li><a href="/markets/NZSX/indices/AXAS" class="choice">S&amp;P/NZAX All </a></li>
+        <li><a href="/markets/NZSX/indices/MOR" class="choice">S&amp;P/NZX Morrison </a></li>
+</ul></section>
+    <section class="choice-group"><ul class="choices">
+        <li><a href="/markets/NZSX/sectors/G10" class="choice">S&amp;P/NZX All Energy</a></li>
+        <li><a href="/markets/NZSX/sectors/G15" class="choice">S&amp;P/NZX All Materials</a></li>
+        <li><a href="/markets/NZSX/sectors/G20" class="choice">S&amp;P/NZX All Industrials</a></li>
+        <li><a href="/markets/NZSX/sectors/G25" class="choice">S&amp;P/NZX All Consumer Discretionary</a></li>
+        <li><a href="/markets/NZSX/sectors/G30" class="choice">S&amp;P/NZX All Consumer Staples</a></li>
+        <li><a href="/markets/NZSX/sectors/G35" class="choice">S&amp;P/NZX All Health Care</a></li>
+        <li><a href="/markets/NZSX/sectors/G40" class="choice">S&amp;P/NZX All Financials</a></li>
+        <li><a href="/markets/NZSX/sectors/G45" class="choice">S&amp;P/NZX All Information Technology</a></li>
+        <li><a href="/markets/NZSX/sectors/G50" class="choice">S&amp;P/NZX All Telecommunication Services</a></li>
+        <li><a href="/markets/NZSX/sectors/G55" class="choice">S&amp;P/NZX All Utilities</a></li>
+        <li><a href="/markets/NZSX/sectors/NZRE" class="choice">S&amp;P/NZX All Real Estate</a></li>
+</ul></section>
+<section class="choice-group" id="rest-of-it"><ul class="choices">
+  <li><a href="/markets/NZSX/announcements" class="choice">Market Announcements</a></li>
+  <li><a href="/markets/NZSX/trading_hours" class="choice">Trading Hours</a></li>
+  <li><a href="/investing/find_a_participant" class="choice">Find an NZX Participant</a></li>
+</ul></section>
+    <aside class="slice ad-slice skyscraper_ad">
+  <div class="advertisement-text">Advertisement</div>
+  <div ID="DivSkyScraper">
+    <script language="javascript" type="text/javascript">
+    aimRenderAd(160, 600, '160x600','SkyScraper','');
+    if(!document.all){
+    SkyScraper_frame = jQuery("#SkyScraper")[0];
+    SkyScraper_frame.src = SkyScraper_frame.src;
+    }</script>
+  </div>
+</aside>
+<script type="text/javascript">
+$(document).ready(function() {
+    if ($('#DivSkyScraper iframe').length == 0){
+        $("aside").css("display","none");
+    }
+});
+</script>
+
+
+    </div>
+    <div class="detail">
+        <header class="topic">
+    <h2>
+      
+
+      All Securities
+    </h2>
+    
+  </header>
+
+
+      
+
+
+<section id="instruments" class="screen table-screen">
+  
+    <table>
+      <thead>
+        <tr>
+          <th class="code sort-column">Code</th>
+          <th class=" ">Name</th>
+          <th class="numeric ">Price</th>
+          <th class="numeric ">Move</th>
+          <th class="numeric ">Volume</th>
+          <th class="numeric ">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ABA">ABA</a>
+  </td>
+  <td  alt-tooltip alt="Abano Healthcare Group Limited Ordinary Shares">Abano Healthcare Gro...</td>
+    <td class="numeric">$7.600</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">9,277</td>
+  <td class="numeric">$70,702</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AFI">AFI</a>
+  </td>
+  <td  alt-tooltip alt="Australian Foundation Investment Company Limited Ord Shares">Australian Foundatio...</td>
+    <td class="numeric">$5.900</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">12,350</td>
+  <td class="numeric">$72,758</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AFT">AFT</a>
+  </td>
+  <td  alt-tooltip alt="AFT Pharmaceuticals Limited">AFT Pharmaceuticals ...</td>
+    <td class="numeric">$3.050</td>
+  <td class="numeric"><span class="negative-movement">-$0.050 / -1.61%</span></td>
+  <td class="numeric">1,000</td>
+  <td class="numeric">$3,050</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AIA">AIA</a>
+  </td>
+  <td  alt-tooltip alt="Auckland International Airport Limited Ordinary Shares">Auckland Internation...</td>
+    <td class="numeric">$6.650</td>
+  <td class="numeric"><span class="positive-movement">$0.150 / 2.31%</span></td>
+  <td class="numeric">1,975,310</td>
+  <td class="numeric">$13,038,807</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AIR">AIR</a>
+  </td>
+  <td  alt-tooltip alt="Air New Zealand Limited (NS) Ordinary Shares">Air New Zealand Limi...</td>
+    <td class="numeric">$2.090</td>
+  <td class="numeric"><span class="negative-movement">-$0.005 / -0.24%</span></td>
+  <td class="numeric">1,967,768</td>
+  <td class="numeric">$4,125,987</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ALF">ALF</a>
+  </td>
+  <td  alt-tooltip alt="Allied Farmers Limited Ordinary Shares">Allied Farmers Limit...</td>
+    <td class="numeric">$0.047</td>
+  <td class="numeric"><span class="negative-movement">-$0.002 / -4.08%</span></td>
+  <td class="numeric">1,857</td>
+  <td class="numeric">$87</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AMP">AMP</a>
+  </td>
+  <td  alt-tooltip alt="AMP Limited Ordinary Shares">AMP Limited Ordinary...</td>
+    <td class="numeric">$5.400</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 0.19%</span></td>
+  <td class="numeric">52,955</td>
+  <td class="numeric">$284,827</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ANZ">ANZ</a>
+  </td>
+  <td  alt-tooltip alt="Australia and New Zealand Banking Group Limited Ord Shares">Australia and New Ze...</td>
+    <td class="numeric">$25.090</td>
+  <td class="numeric"><span class="negative-movement">-$0.240 / -0.95%</span></td>
+  <td class="numeric">177,143</td>
+  <td class="numeric">$4,473,911</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AOR">AOR</a>
+  </td>
+  <td  alt-tooltip alt="Aorere Resources Limited Ordinary Shares">Aorere Resources Lim...</td>
+    <td class="numeric">$0.002</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AORWA">AORWA</a>
+  </td>
+  <td  alt-tooltip alt="AOR 27/07/17 $2.981 Warrants">AOR 27/07/17 $2.981 ...</td>
+    <td class="numeric">$0.028</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/APA">APA</a>
+  </td>
+  <td  alt-tooltip alt="The Asia Pacific Trust (NS) Units">The Asia Pacific Tru...</td>
+    <td class="numeric">$1.585</td>
+  <td class="numeric"><span class="positive-movement">$0.003 / 0.19%</span></td>
+  <td class="numeric">30,204</td>
+  <td class="numeric">$47,755</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/APN">APN</a>
+  </td>
+  <td  alt-tooltip alt="APN News &amp; Media Limited Ordinary Shares">APN News &amp; Media Lim...</td>
+    <td class="numeric">$4.100</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ARG">ARG</a>
+  </td>
+  <td  alt-tooltip alt="Argosy Property Limited Ordinary Shares">Argosy Property Limi...</td>
+    <td class="numeric">$1.150</td>
+  <td class="numeric"><span class="positive-movement">$0.005 / 0.44%</span></td>
+  <td class="numeric">1,071,516</td>
+  <td class="numeric">$1,228,723</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ARV">ARV</a>
+  </td>
+  <td  alt-tooltip alt="Arvida Group Limited Ordinary Shares">Arvida Group Limited...</td>
+    <td class="numeric">$1.160</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -0.85%</span></td>
+  <td class="numeric">239,134</td>
+  <td class="numeric">$277,665</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASBPA">ASBPA</a>
+  </td>
+  <td  alt-tooltip alt="ASB Capital Limited (NS) Preference Shares">ASB Capital Limited ...</td>
+    <td class="numeric">$0.820</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 1.23%</span></td>
+  <td class="numeric">21,000</td>
+  <td class="numeric">$17,080</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASBPB">ASBPB</a>
+  </td>
+  <td  alt-tooltip alt="ASB Capital No.2 Limited (NS) Preference Shares">ASB Capital No.2 Lim...</td>
+    <td class="numeric">$0.761</td>
+  <td class="numeric"><span class="negative-movement">-$0.019 / -2.44%</span></td>
+  <td class="numeric">18,183</td>
+  <td class="numeric">$13,837</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASD">ASD</a>
+  </td>
+  <td  alt-tooltip alt="Australian Dividend Index Trust (NS) Units">Australian Dividend ...</td>
+    <td class="numeric">$1.504</td>
+  <td class="numeric"><span class="negative-movement">-$0.003 / -0.20%</span></td>
+  <td class="numeric">33,616</td>
+  <td class="numeric">$50,224</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASF">ASF</a>
+  </td>
+  <td  alt-tooltip alt="Australian Financials Index Trust (NS) Units">Australian Financial...</td>
+    <td class="numeric">$6.656</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">310</td>
+  <td class="numeric">$2,096</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASP">ASP</a>
+  </td>
+  <td  alt-tooltip alt="Australian Property Index Trust (NS) Units">Australian Property ...</td>
+    <td class="numeric">$1.382</td>
+  <td class="numeric"><span class="positive-movement">$0.052 / 3.91%</span></td>
+  <td class="numeric">751,698</td>
+  <td class="numeric">$1,038,268</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ASR">ASR</a>
+  </td>
+  <td  alt-tooltip alt="Australian Resources Index Trust (NS) Units">Australian Resources...</td>
+    <td class="numeric">$3.017</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">3,297</td>
+  <td class="numeric">$9,581</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ATM">ATM</a>
+  </td>
+  <td  alt-tooltip alt="The a2 Milk Company Limited Ordinary Shares">The a2 Milk Company ...</td>
+    <td class="numeric">$1.830</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">1,391,549</td>
+  <td class="numeric">$2,552,231</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AUG">AUG</a>
+  </td>
+  <td  alt-tooltip alt="Augusta Capital Limited Ordinary Shares">Augusta Capital Limi...</td>
+    <td class="numeric">$1.100</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">45,000</td>
+  <td class="numeric">$49,500</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AWF">AWF</a>
+  </td>
+  <td  alt-tooltip alt="AWF Madison Group Limited Ordinary Shares">AWF Madison Group Li...</td>
+    <td class="numeric">$2.340</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 0.43%</span></td>
+  <td class="numeric">2,000</td>
+  <td class="numeric">$4,680</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/AWK">AWK</a>
+  </td>
+  <td  alt-tooltip alt="Airwork Holdings Limited Ordinary Shares">Airwork Holdings Lim...</td>
+    <td class="numeric">$4.500</td>
+  <td class="numeric"><span class="negative-movement">-$0.030 / -0.66%</span></td>
+  <td class="numeric">12,571</td>
+  <td class="numeric">$56,570</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/BGR">BGR</a>
+  </td>
+  <td  alt-tooltip alt="Briscoe Group Limited Ordinary Shares">Briscoe Group Limite...</td>
+    <td class="numeric">$3.100</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -0.64%</span></td>
+  <td class="numeric">6,000</td>
+  <td class="numeric">$18,600</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/BIL">BIL</a>
+  </td>
+  <td  alt-tooltip alt="Bethunes Investments Limited Ordinary Shares">Bethunes Investments...</td>
+    <td class="numeric">$0.005</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/BIT">BIT</a>
+  </td>
+  <td  alt-tooltip alt="The Bankers Investment Trust Plc Ordinary Units">The Bankers Investme...</td>
+    <td class="numeric">$11.000</td>
+  <td class="numeric"><span class="positive-movement">$0.200 / 1.85%</span></td>
+  <td class="numeric">3,349</td>
+  <td class="numeric">$36,742</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/BLT">BLT</a>
+  </td>
+  <td  alt-tooltip alt="BLIS Technologies Limited Ordinary Shares">BLIS Technologies Li...</td>
+    <td class="numeric">$0.037</td>
+  <td class="numeric"><span class="positive-movement">$0.004 / 12.12%</span></td>
+  <td class="numeric">270,000</td>
+  <td class="numeric">$9,690</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/BRM">BRM</a>
+  </td>
+  <td  alt-tooltip alt="Barramundi Limited Ordinary Shares">Barramundi Limited O...</td>
+    <td class="numeric">$0.630</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 1.61%</span></td>
+  <td class="numeric">7,000</td>
+  <td class="numeric">$4,410</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CAV">CAV</a>
+  </td>
+  <td  alt-tooltip alt="Cavalier Corporation Limited Ordinary Shares">Cavalier Corporation...</td>
+    <td class="numeric">$0.750</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -1.32%</span></td>
+  <td class="numeric">20,342</td>
+  <td class="numeric">$15,427</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CBL">CBL</a>
+  </td>
+  <td  alt-tooltip alt="CBL Corporation Limited Ordinary Shares">CBL Corporation Limi...</td>
+    <td class="numeric">$2.650</td>
+  <td class="numeric"><span class="positive-movement">$0.050 / 1.92%</span></td>
+  <td class="numeric">826,188</td>
+  <td class="numeric">$2,146,505</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CDI">CDI</a>
+  </td>
+  <td  alt-tooltip alt="CDL Investments New Zealand Limited Ordinary Shares">CDL Investments New ...</td>
+    <td class="numeric">$0.690</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CEN">CEN</a>
+  </td>
+  <td  alt-tooltip alt="Contact Energy Limited Ordinary Shares">Contact Energy Limit...</td>
+    <td class="numeric">$5.280</td>
+  <td class="numeric"><span class="positive-movement">$0.100 / 1.93%</span></td>
+  <td class="numeric">1,471,914</td>
+  <td class="numeric">$7,709,892</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CMO">CMO</a>
+  </td>
+  <td  alt-tooltip alt="The Colonial Motor Company Limited Ordinary Shares">The Colonial Motor C...</td>
+    <td class="numeric">$6.200</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">1,000</td>
+  <td class="numeric">$6,200</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CNU">CNU</a>
+  </td>
+  <td  alt-tooltip alt="Chorus Limited (NS) Ordinary Shares">Chorus Limited (NS) ...</td>
+    <td class="numeric">$4.250</td>
+  <td class="numeric"><span class="positive-movement">$0.030 / 0.71%</span></td>
+  <td class="numeric">1,894,253</td>
+  <td class="numeric">$8,040,795</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/CVT">CVT</a>
+  </td>
+  <td  alt-tooltip alt="Comvita Limited Ordinary Shares">Comvita Limited Ordi...</td>
+    <td class="numeric">$11.900</td>
+  <td class="numeric"><span class="positive-movement">$0.100 / 0.85%</span></td>
+  <td class="numeric">15,682</td>
+  <td class="numeric">$186,086</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/DGL">DGL</a>
+  </td>
+  <td  alt-tooltip alt="Delegat Group Limited Ordinary Shares">Delegat Group Limite...</td>
+    <td class="numeric">$6.100</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">3,820</td>
+  <td class="numeric">$23,302</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/DIV">DIV</a>
+  </td>
+  <td  alt-tooltip alt="New Zealand Dividend Index Trust (NS) Units">New Zealand Dividend...</td>
+    <td class="numeric">$1.081</td>
+  <td class="numeric"><span class="positive-movement">$0.001 / 0.09%</span></td>
+  <td class="numeric">135,470</td>
+  <td class="numeric">$145,870</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/DOW">DOW</a>
+  </td>
+  <td  alt-tooltip alt="Downer EDI Limited Ordinary Shares">Downer EDI Limited O...</td>
+    <td class="numeric">$0.000</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">300</td>
+  <td class="numeric">$1,169</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/EBO">EBO</a>
+  </td>
+  <td  alt-tooltip alt="Ebos Group Limited Ordinary Shares">Ebos Group Limited O...</td>
+    <td class="numeric">$16.100</td>
+  <td class="numeric"><span class="negative-movement">-$0.260 / -1.59%</span></td>
+  <td class="numeric">39,587</td>
+  <td class="numeric">$642,189</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/EMF">EMF</a>
+  </td>
+  <td  alt-tooltip alt="The Emerging Markets Trust (NS) Units">The Emerging Markets...</td>
+    <td class="numeric">$0.989</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">1,104,814</td>
+  <td class="numeric">$1,094,200</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ERD">ERD</a>
+  </td>
+  <td  alt-tooltip alt="EROAD Limited Ordinary Shares">EROAD Limited Ordina...</td>
+    <td class="numeric">$2.170</td>
+  <td class="numeric"><span class="negative-movement">-$0.030 / -1.36%</span></td>
+  <td class="numeric">73,000</td>
+  <td class="numeric">$158,430</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/EUF">EUF</a>
+  </td>
+  <td  alt-tooltip alt="The Europe Trust (NS) Units">The Europe Trust (NS...</td>
+    <td class="numeric">$1.338</td>
+  <td class="numeric"><span class="negative-movement">-$0.003 / -0.22%</span></td>
+  <td class="numeric">300</td>
+  <td class="numeric">$401</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/EUT">EUT</a>
+  </td>
+  <td  alt-tooltip alt="The European Investment Trust plc Ordinary Units">The European Investm...</td>
+    <td class="numeric">$14.000</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/EVO">EVO</a>
+  </td>
+  <td  alt-tooltip alt="Evolve Education Group Limited Ordinary Shares">Evolve Education Gro...</td>
+    <td class="numeric">$0.890</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -1.11%</span></td>
+  <td class="numeric">75,385</td>
+  <td class="numeric">$67,689</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FBU">FBU</a>
+  </td>
+  <td  alt-tooltip alt="Fletcher Building Limited Ordinary Shares">Fletcher Building Li...</td>
+    <td class="numeric">$8.660</td>
+  <td class="numeric"><span class="positive-movement">$0.080 / 0.93%</span></td>
+  <td class="numeric">1,246,339</td>
+  <td class="numeric">$10,750,724</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FCT">FCT</a>
+  </td>
+  <td  alt-tooltip alt="Foreign &amp; Colonial Investment Trust Plc Ordinary Units">Foreign &amp; Colonial I...</td>
+    <td class="numeric">$8.300</td>
+  <td class="numeric"><span class="positive-movement">$0.050 / 0.61%</span></td>
+  <td class="numeric">600</td>
+  <td class="numeric">$4,980</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FIN">FIN</a>
+  </td>
+  <td  alt-tooltip alt="Finzsoft Solutions Limited Ordinary Shares">Finzsoft Solutions L...</td>
+    <td class="numeric">$2.250</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FLI">FLI</a>
+  </td>
+  <td  alt-tooltip alt="Fliway Group Limited Ordinary Shares">Fliway Group Limited...</td>
+    <td class="numeric">$0.960</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FNZ">FNZ</a>
+  </td>
+  <td  alt-tooltip alt="SmartFONZ">SmartFONZ</td>
+    <td class="numeric">$2.175</td>
+  <td class="numeric"><span class="positive-movement">$0.017 / 0.79%</span></td>
+  <td class="numeric">37,002</td>
+  <td class="numeric">$80,513</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FPH">FPH</a>
+  </td>
+  <td  alt-tooltip alt="Fisher &amp; Paykel Healthcare Corporation Limited Ord Shares">Fisher &amp; Paykel Heal...</td>
+    <td class="numeric">$10.190</td>
+  <td class="numeric"><span class="positive-movement">$0.140 / 1.39%</span></td>
+  <td class="numeric">736,472</td>
+  <td class="numeric">$7,458,967</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FRE">FRE</a>
+  </td>
+  <td  alt-tooltip alt="Freightways Limited Ordinary Shares">Freightways Limited ...</td>
+    <td class="numeric">$6.510</td>
+  <td class="numeric"><span class="positive-movement">$0.040 / 0.62%</span></td>
+  <td class="numeric">225,446</td>
+  <td class="numeric">$1,467,599</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/FSF">FSF</a>
+  </td>
+  <td  alt-tooltip alt="Fonterra Shareholders&#x27; Fund Units">Fonterra Shareholder...</td>
+    <td class="numeric">$5.450</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -0.37%</span></td>
+  <td class="numeric">283,462</td>
+  <td class="numeric">$1,556,150</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/GBF">GBF</a>
+  </td>
+  <td  alt-tooltip alt="Global Bond Fund (NS) Units">Global Bond Fund (NS...</td>
+    <td class="numeric">$3.110</td>
+  <td class="numeric"><span class="positive-movement">$0.017 / 0.55%</span></td>
+  <td class="numeric">6,099</td>
+  <td class="numeric">$18,984</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/GMT">GMT</a>
+  </td>
+  <td  alt-tooltip alt="Goodman Property Trust Ordinary Units">Goodman Property Tru...</td>
+    <td class="numeric">$1.310</td>
+  <td class="numeric"><span class="positive-movement">$0.015 / 1.16%</span></td>
+  <td class="numeric">1,036,940</td>
+  <td class="numeric">$1,351,185</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/GNE">GNE</a>
+  </td>
+  <td  alt-tooltip alt="Genesis Energy Limited Ordinary Shares">Genesis Energy Limit...</td>
+    <td class="numeric">$2.170</td>
+  <td class="numeric"><span class="positive-movement">$0.030 / 1.40%</span></td>
+  <td class="numeric">779,827</td>
+  <td class="numeric">$1,678,192</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/GTK">GTK</a>
+  </td>
+  <td  alt-tooltip alt="Gentrack Group Limited Ordinary Shares">Gentrack Group Limit...</td>
+    <td class="numeric">$2.680</td>
+  <td class="numeric"><span class="negative-movement">-$0.070 / -2.55%</span></td>
+  <td class="numeric">105,486</td>
+  <td class="numeric">$289,315</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/GXH">GXH</a>
+  </td>
+  <td  alt-tooltip alt="Green Cross Health Limited Ordinary Shares">Green Cross Health L...</td>
+    <td class="numeric">$2.570</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -0.39%</span></td>
+  <td class="numeric">10,000</td>
+  <td class="numeric">$25,700</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/HBL">HBL</a>
+  </td>
+  <td  alt-tooltip alt="Heartland Bank Limited Ordinary Shares">Heartland Bank Limit...</td>
+    <td class="numeric">$1.200</td>
+  <td class="numeric"><span class="positive-movement">$0.020 / 1.69%</span></td>
+  <td class="numeric">610,137</td>
+  <td class="numeric">$737,332</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/HBY">HBY</a>
+  </td>
+  <td  alt-tooltip alt="Hellaby Holdings Limited Ordinary Shares">Hellaby Holdings Lim...</td>
+    <td class="numeric">$2.620</td>
+  <td class="numeric"><span class="positive-movement">$0.020 / 0.77%</span></td>
+  <td class="numeric">40,185</td>
+  <td class="numeric">$105,107</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/HFL">HFL</a>
+  </td>
+  <td  alt-tooltip alt="Henderson Far East Income Limited Ordinary Shares">Henderson Far East I...</td>
+    <td class="numeric">$5.800</td>
+  <td class="numeric"><span class="positive-movement">$0.100 / 1.75%</span></td>
+  <td class="numeric">2,500</td>
+  <td class="numeric">$14,485</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/HLG">HLG</a>
+  </td>
+  <td  alt-tooltip alt="Hallenstein Glasson Holdings Limited Ordinary Shares">Hallenstein Glasson ...</td>
+    <td class="numeric">$2.680</td>
+  <td class="numeric"><span class="positive-movement">$0.030 / 1.13%</span></td>
+  <td class="numeric">10,915</td>
+  <td class="numeric">$29,075</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/IFT">IFT</a>
+  </td>
+  <td  alt-tooltip alt="Infratil Limited Ordinary Shares">Infratil Limited Ord...</td>
+    <td class="numeric">$3.250</td>
+  <td class="numeric"><span class="positive-movement">$0.055 / 1.72%</span></td>
+  <td class="numeric">622,975</td>
+  <td class="numeric">$2,016,058</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/IKE">IKE</a>
+  </td>
+  <td  alt-tooltip alt="ikeGPS Group Limited Ordinary Shares">ikeGPS Group Limited...</td>
+    <td class="numeric">$0.650</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/IQE">IQE</a>
+  </td>
+  <td  alt-tooltip alt="Intueri Education Group Limited Ordinary Shares">Intueri Education Gr...</td>
+    <td class="numeric">$0.340</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">38,000</td>
+  <td class="numeric">$12,920</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/JFJ">JFJ</a>
+  </td>
+  <td  alt-tooltip alt="JPMorgan Japanese Investment Trust Plc Ord Shares">JPMorgan Japanese In...</td>
+    <td class="numeric">$5.800</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/JMO">JMO</a>
+  </td>
+  <td  alt-tooltip alt="JPMorgan Overseas Investment Trust Plc Shares">JPMorgan Overseas In...</td>
+    <td class="numeric">$3.800</td>
+  <td class="numeric"><span class="negative-movement">-$0.200 / -5.00%</span></td>
+  <td class="numeric">5,250</td>
+  <td class="numeric">$19,950</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/KFL">KFL</a>
+  </td>
+  <td  alt-tooltip alt="Kingfish Limited Ordinary Shares">Kingfish Limited Ord...</td>
+    <td class="numeric">$1.370</td>
+  <td class="numeric"><span class="positive-movement">$0.030 / 2.24%</span></td>
+  <td class="numeric">68,212</td>
+  <td class="numeric">$91,967</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/KFLWD">KFLWD</a>
+  </td>
+  <td  alt-tooltip alt="Kingfish Limited 05/05/17 Warrants">Kingfish Limited 05/...</td>
+    <td class="numeric">$0.045</td>
+  <td class="numeric"><span class="positive-movement">$0.005 / 12.50%</span></td>
+  <td class="numeric">36,716</td>
+  <td class="numeric">$1,611</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/KMD">KMD</a>
+  </td>
+  <td  alt-tooltip alt="Kathmandu Holdings Limited Ordinary Shares">Kathmandu Holdings L...</td>
+    <td class="numeric">$1.590</td>
+  <td class="numeric"><span class="positive-movement">$0.060 / 3.92%</span></td>
+  <td class="numeric">1,455,258</td>
+  <td class="numeric">$2,267,135</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/KPG">KPG</a>
+  </td>
+  <td  alt-tooltip alt="Kiwi Property Group Limited Ordinary Shares">Kiwi Property Group ...</td>
+    <td class="numeric">$1.495</td>
+  <td class="numeric"><span class="positive-movement">$0.005 / 0.34%</span></td>
+  <td class="numeric">2,847,677</td>
+  <td class="numeric">$4,245,493</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/KRK">KRK</a>
+  </td>
+  <td  alt-tooltip alt="Kirkcaldie &amp; Stains Limited Ordinary Shares">Kirkcaldie &amp; Stains ...</td>
+    <td class="numeric">$3.260</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MAD">MAD</a>
+  </td>
+  <td  alt-tooltip alt="Energy Mad Limited Ordinary Shares">Energy Mad Limited O...</td>
+    <td class="numeric">$0.063</td>
+  <td class="numeric"><span class="positive-movement">$0.003 / 5.00%</span></td>
+  <td class="numeric">25,000</td>
+  <td class="numeric">$1,575</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MCK">MCK</a>
+  </td>
+  <td  alt-tooltip alt="Millennium &amp; Copthorne Hotels NZ Limited Ordinary Shares">Millennium &amp; Copthor...</td>
+    <td class="numeric">$1.800</td>
+  <td class="numeric"><span class="negative-movement">-$0.100 / -5.26%</span></td>
+  <td class="numeric">302</td>
+  <td class="numeric">$544</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MCKPA">MCKPA</a>
+  </td>
+  <td  alt-tooltip alt="Millennium &amp; Copthorne Hotels NZ Limited Pref Shares">Millennium &amp; Copthor...</td>
+    <td class="numeric">$1.680</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MDZ">MDZ</a>
+  </td>
+  <td  alt-tooltip alt="SmartMIDZ">SmartMIDZ</td>
+    <td class="numeric">$3.968</td>
+  <td class="numeric"><span class="positive-movement">$0.023 / 0.58%</span></td>
+  <td class="numeric">2,830</td>
+  <td class="numeric">$11,188</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MEL">MEL</a>
+  </td>
+  <td  alt-tooltip alt="Meridian Energy Limited (NS) Ordinary Shares">Meridian Energy Limi...</td>
+    <td class="numeric">$2.610</td>
+  <td class="numeric"><span class="negative-movement">-$0.025 / -0.95%</span></td>
+  <td class="numeric">835,051</td>
+  <td class="numeric">$2,181,992</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MET">MET</a>
+  </td>
+  <td  alt-tooltip alt="Metlifecare Limited Ordinary shares">Metlifecare Limited ...</td>
+    <td class="numeric">$5.550</td>
+  <td class="numeric"><span class="positive-movement">$0.020 / 0.36%</span></td>
+  <td class="numeric">98,640</td>
+  <td class="numeric">$546,231</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MFT">MFT</a>
+  </td>
+  <td  alt-tooltip alt="Mainfreight Limited Ordinary Shares">Mainfreight Limited ...</td>
+    <td class="numeric">$16.720</td>
+  <td class="numeric"><span class="positive-movement">$0.090 / 0.54%</span></td>
+  <td class="numeric">61,930</td>
+  <td class="numeric">$1,035,018</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MGL">MGL</a>
+  </td>
+  <td  alt-tooltip alt="Mercer Group Limited Ordinary Shares">Mercer Group Limited...</td>
+    <td class="numeric">$0.030</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">340,000</td>
+  <td class="numeric">$10,200</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MHI">MHI</a>
+  </td>
+  <td  alt-tooltip alt="Michael Hill New Zealand Limited Ordinary Shares">Michael Hill New Zea...</td>
+    <td class="numeric">$1.140</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MLN">MLN</a>
+  </td>
+  <td  alt-tooltip alt="Marlin Global Limited Ordinary Shares">Marlin Global Limite...</td>
+    <td class="numeric">$0.800</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 1.27%</span></td>
+  <td class="numeric">11,002</td>
+  <td class="numeric">$8,767</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MLNWB">MLNWB</a>
+  </td>
+  <td  alt-tooltip alt="Marlin Global Limited 05/08/16 Warrants">Marlin Global Limite...</td>
+    <td class="numeric">$0.004</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MMH">MMH</a>
+  </td>
+  <td  alt-tooltip alt="Marsden Maritime Holdings Limited (NS) Ordinary Shares">Marsden Maritime Hol...</td>
+    <td class="numeric">$3.070</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MOA">MOA</a>
+  </td>
+  <td  alt-tooltip alt="Moa Group Limited Ordinary Shares">Moa Group Limited Or...</td>
+    <td class="numeric">$0.680</td>
+  <td class="numeric"><span class="positive-movement">$0.040 / 6.25%</span></td>
+  <td class="numeric">50,460</td>
+  <td class="numeric">$33,766</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MPG">MPG</a>
+  </td>
+  <td  alt-tooltip alt="Metro Performance Glass Limited Ordinary Shares">Metro Performance Gl...</td>
+    <td class="numeric">$1.820</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -0.55%</span></td>
+  <td class="numeric">176,279</td>
+  <td class="numeric">$321,475</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MRP">MRP</a>
+  </td>
+  <td  alt-tooltip alt="Mighty River Power Limited Ordinary Shares">Mighty River Power L...</td>
+    <td class="numeric">$2.990</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -0.66%</span></td>
+  <td class="numeric">826,887</td>
+  <td class="numeric">$2,474,131</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MVN">MVN</a>
+  </td>
+  <td  alt-tooltip alt="Methven Limited Ordinary Shares">Methven Limited Ordi...</td>
+    <td class="numeric">$1.280</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">22,000</td>
+  <td class="numeric">$28,360</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MVT">MVT</a>
+  </td>
+  <td  alt-tooltip alt="Mercantile Investment Company Limited Ordinary Shares">Mercantile Investmen...</td>
+    <td class="numeric">$0.145</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/MZY">MZY</a>
+  </td>
+  <td  alt-tooltip alt="SmartMOZY">SmartMOZY</td>
+    <td class="numeric">$5.588</td>
+  <td class="numeric"><span class="positive-movement">$0.054 / 0.98%</span></td>
+  <td class="numeric">182,400</td>
+  <td class="numeric">$1,019,223</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NPF">NPF</a>
+  </td>
+  <td  alt-tooltip alt="New Zealand Property Trust (NS) Units">New Zealand Property...</td>
+    <td class="numeric">$1.118</td>
+  <td class="numeric"><span class="negative-movement">-$0.004 / -0.36%</span></td>
+  <td class="numeric">40,047</td>
+  <td class="numeric">$44,696</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NPT">NPT</a>
+  </td>
+  <td  alt-tooltip alt="NPT Limited Ordinary Shares">NPT Limited Ordinary...</td>
+    <td class="numeric">$0.665</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">35,000</td>
+  <td class="numeric">$23,275</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NPX">NPX</a>
+  </td>
+  <td  alt-tooltip alt="Nuplex Industries Limited Ordinary Shares">Nuplex Industries Li...</td>
+    <td class="numeric">$5.200</td>
+  <td class="numeric"><span class="negative-movement">-$0.050 / -0.95%</span></td>
+  <td class="numeric">2,347,408</td>
+  <td class="numeric">$12,226,981</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NTL">NTL</a>
+  </td>
+  <td  alt-tooltip alt="New Talisman Gold Mines Limited Ordinary Shares">New Talisman Gold Mi...</td>
+    <td class="numeric">$0.007</td>
+  <td class="numeric"><span class="negative-movement">-$0.001 / -12.50%</span></td>
+  <td class="numeric">1,150,627</td>
+  <td class="numeric">$8,619</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NTLOA">NTLOA</a>
+  </td>
+  <td  alt-tooltip alt="NTL 28/11/17 AUD $0.02 Options">NTL 28/11/17 AUD $0....</td>
+    <td class="numeric">$0.003</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NWF">NWF</a>
+  </td>
+  <td  alt-tooltip alt="NZ Windfarms Limited Ordinary Shares">NZ Windfarms Limited...</td>
+    <td class="numeric">$0.092</td>
+  <td class="numeric"><span class="negative-movement">-$0.007 / -7.07%</span></td>
+  <td class="numeric">26,000</td>
+  <td class="numeric">$2,497</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZB">NZB</a>
+  </td>
+  <td  alt-tooltip alt="New Zealand Bond Trust (NS) Units">New Zealand Bond Tru...</td>
+    <td class="numeric">$3.035</td>
+  <td class="numeric"><span class="negative-movement">-$0.006 / -0.20%</span></td>
+  <td class="numeric">5,779</td>
+  <td class="numeric">$17,534</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZC">NZC</a>
+  </td>
+  <td  alt-tooltip alt="New Zealand Cash Trust (NS) Units">New Zealand Cash Tru...</td>
+    <td class="numeric">$3.008</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">27</td>
+  <td class="numeric">$81</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZF">NZF</a>
+  </td>
+  <td  alt-tooltip alt="NZF Group Limited Ordinary Shares">NZF Group Limited Or...</td>
+    <td class="numeric">$0.010</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZM">NZM</a>
+  </td>
+  <td  alt-tooltip alt="NZME Limited">NZME Limited</td>
+    <td class="numeric">$0.730</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -5.19%</span></td>
+  <td class="numeric">9,346,681</td>
+  <td class="numeric">$6,919,581</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZO">NZO</a>
+  </td>
+  <td  alt-tooltip alt="New Zealand Oil &amp; Gas Limited Ordinary Shares">New Zealand Oil &amp; Ga...</td>
+    <td class="numeric">$0.485</td>
+  <td class="numeric"><span class="positive-movement">$0.025 / 5.43%</span></td>
+  <td class="numeric">236,157</td>
+  <td class="numeric">$113,106</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZR">NZR</a>
+  </td>
+  <td  alt-tooltip alt="The New Zealand Refining Company Limited Ordinary Shares">The New Zealand Refi...</td>
+    <td class="numeric">$2.430</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">566,539</td>
+  <td class="numeric">$1,377,003</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/NZX">NZX</a>
+  </td>
+  <td  alt-tooltip alt="NZX Limited Ordinary Shares">NZX Limited Ordinary...</td>
+    <td class="numeric">$1.010</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 1.00%</span></td>
+  <td class="numeric">1,443,249</td>
+  <td class="numeric">$1,457,672</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/OGC">OGC</a>
+  </td>
+  <td  alt-tooltip alt="OceanaGold Corporation (NS) Ordinary Shares">OceanaGold Corporati...</td>
+    <td class="numeric">$5.500</td>
+  <td class="numeric"><span class="positive-movement">$0.130 / 2.42%</span></td>
+  <td class="numeric">42,457</td>
+  <td class="numeric">$229,653</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/OHE">OHE</a>
+  </td>
+  <td  alt-tooltip alt="Orion Health Group Limited Ordinary Shares">Orion Health Group L...</td>
+    <td class="numeric">$4.860</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -0.82%</span></td>
+  <td class="numeric">97,855</td>
+  <td class="numeric">$475,908</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/OIC">OIC</a>
+  </td>
+  <td  alt-tooltip alt="Opus International Consultants Limited Ordinary Shares">Opus International C...</td>
+    <td class="numeric">$1.110</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -1.77%</span></td>
+  <td class="numeric">47,500</td>
+  <td class="numeric">$53,210</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/OZY">OZY</a>
+  </td>
+  <td  alt-tooltip alt="SmartOZZY">SmartOZZY</td>
+    <td class="numeric">$3.149</td>
+  <td class="numeric"><span class="negative-movement">-$0.027 / -0.85%</span></td>
+  <td class="numeric">41,385</td>
+  <td class="numeric">$130,574</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PAY">PAY</a>
+  </td>
+  <td  alt-tooltip alt="Pushpay Holdings Ltd Ordinary Shares">Pushpay Holdings Ltd...</td>
+    <td class="numeric">$2.040</td>
+  <td class="numeric"><span class="positive-movement">$0.040 / 2.00%</span></td>
+  <td class="numeric">15,000</td>
+  <td class="numeric">$30,400</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PBG">PBG</a>
+  </td>
+  <td  alt-tooltip alt="Pacific Brands Limited Ordinary Shares">Pacific Brands Limit...</td>
+    <td class="numeric">$1.150</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PCT">PCT</a>
+  </td>
+  <td  alt-tooltip alt="Precinct Properties New Zealand Limited Ordinary Shares">Precinct Properties ...</td>
+    <td class="numeric">$1.240</td>
+  <td class="numeric"><span class="negative-movement">-$0.005 / -0.40%</span></td>
+  <td class="numeric">2,094,575</td>
+  <td class="numeric">$2,606,807</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PEB">PEB</a>
+  </td>
+  <td  alt-tooltip alt="Pacific Edge Limited Ordinary Shares">Pacific Edge Limited...</td>
+    <td class="numeric">$0.550</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">89,857</td>
+  <td class="numeric">$49,421</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PFI">PFI</a>
+  </td>
+  <td  alt-tooltip alt="Property For Industry Limited Ordinary Shares">Property For Industr...</td>
+    <td class="numeric">$1.620</td>
+  <td class="numeric"><span class="positive-movement">$0.050 / 3.18%</span></td>
+  <td class="numeric">326,893</td>
+  <td class="numeric">$523,932</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PGC">PGC</a>
+  </td>
+  <td  alt-tooltip alt="Pyne Gould Corporation Limited">Pyne Gould Corporati...</td>
+    <td class="numeric">$0.200</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">2,948</td>
+  <td class="numeric">$610</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PGW">PGW</a>
+  </td>
+  <td  alt-tooltip alt="PGG Wrightson Limited Ordinary Shares">PGG Wrightson Limite...</td>
+    <td class="numeric">$0.415</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">177,070</td>
+  <td class="numeric">$73,163</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PIL">PIL</a>
+  </td>
+  <td  alt-tooltip alt="Promisia Integrative Limited Ordinary Shares">Promisia Integrative...</td>
+    <td class="numeric">$0.018</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/POT">POT</a>
+  </td>
+  <td  alt-tooltip alt="Port of Tauranga Limited (NS) Ordinary Shares">Port of Tauranga Lim...</td>
+    <td class="numeric">$19.800</td>
+  <td class="numeric"><span class="positive-movement">$0.300 / 1.54%</span></td>
+  <td class="numeric">18,208</td>
+  <td class="numeric">$360,025</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PPL">PPL</a>
+  </td>
+  <td  alt-tooltip alt="Pumpkin Patch Limited Ordinary Shares">Pumpkin Patch Limite...</td>
+    <td class="numeric">$0.068</td>
+  <td class="numeric"><span class="positive-movement">$0.008 / 13.33%</span></td>
+  <td class="numeric">57,751</td>
+  <td class="numeric">$3,927</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/PPP">PPP</a>
+  </td>
+  <td  alt-tooltip alt="Pan Pacific Petroleum NL Ordinary Shares">Pan Pacific Petroleu...</td>
+    <td class="numeric">$0.029</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">26,000</td>
+  <td class="numeric">$754</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/RAK">RAK</a>
+  </td>
+  <td  alt-tooltip alt="Rakon Limited Ordinary Shares">Rakon Limited Ordina...</td>
+    <td class="numeric">$0.230</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">75,447</td>
+  <td class="numeric">$17,353</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/RBC">RBC</a>
+  </td>
+  <td  alt-tooltip alt="Rubicon Limited Ordinary Shares">Rubicon Limited Ordi...</td>
+    <td class="numeric">$0.240</td>
+  <td class="numeric"><span class="negative-movement">-$0.005 / -2.04%</span></td>
+  <td class="numeric">15,000</td>
+  <td class="numeric">$3,600</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/RBD">RBD</a>
+  </td>
+  <td  alt-tooltip alt="Restaurant Brands NZ Limited Ordinary Shares">Restaurant Brands NZ...</td>
+    <td class="numeric">$5.380</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -0.37%</span></td>
+  <td class="numeric">112,889</td>
+  <td class="numeric">$612,695</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/RYM">RYM</a>
+  </td>
+  <td  alt-tooltip alt="Ryman Healthcare Limited Ordinary Shares">Ryman Healthcare Lim...</td>
+    <td class="numeric">$9.250</td>
+  <td class="numeric"><span class="negative-movement">-$0.080 / -0.86%</span></td>
+  <td class="numeric">410,104</td>
+  <td class="numeric">$3,811,448</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SAN">SAN</a>
+  </td>
+  <td  alt-tooltip alt="Sanford Limited Ordinary Shares">Sanford Limited Ordi...</td>
+    <td class="numeric">$5.560</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -0.71%</span></td>
+  <td class="numeric">1,950</td>
+  <td class="numeric">$10,842</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SCL">SCL</a>
+  </td>
+  <td  alt-tooltip alt="Scales Corporation Limited Ordinary Shares">Scales Corporation L...</td>
+    <td class="numeric">$2.980</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 0.34%</span></td>
+  <td class="numeric">180,115</td>
+  <td class="numeric">$538,659</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SCT">SCT</a>
+  </td>
+  <td  alt-tooltip alt="Scott Technology Limited Ordinary Shares">Scott Technology Lim...</td>
+    <td class="numeric">$1.900</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SCY">SCY</a>
+  </td>
+  <td  alt-tooltip alt="Smiths City Group Limited Ordinary Shares">Smiths City Group Li...</td>
+    <td class="numeric">$0.580</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">7,000</td>
+  <td class="numeric">$4,060</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SEA">SEA</a>
+  </td>
+  <td  alt-tooltip alt="SeaDragon Limited Ordinary Shares">SeaDragon Limited Or...</td>
+    <td class="numeric">$0.012</td>
+  <td class="numeric"><span class="negative-movement">-$0.001 / -7.69%</span></td>
+  <td class="numeric">10,425,100</td>
+  <td class="numeric">$124,086</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SEK">SEK</a>
+  </td>
+  <td  alt-tooltip alt="Seeka Kiwifruit Industries Limited Ordinary Shares">Seeka Kiwifruit Indu...</td>
+    <td class="numeric">$4.650</td>
+  <td class="numeric"><span class="positive-movement">$0.130 / 2.88%</span></td>
+  <td class="numeric">4,024</td>
+  <td class="numeric">$18,643</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SKC">SKC</a>
+  </td>
+  <td  alt-tooltip alt="SKYCITY Entertainment Group Limited (NS) Ordinary Shares">SKYCITY Entertainmen...</td>
+    <td class="numeric">$4.640</td>
+  <td class="numeric"><span class="positive-movement">$0.060 / 1.31%</span></td>
+  <td class="numeric">3,685,306</td>
+  <td class="numeric">$16,988,978</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SKL">SKL</a>
+  </td>
+  <td  alt-tooltip alt="Skellerup Holdings Limited Ordinary Shares">Skellerup Holdings L...</td>
+    <td class="numeric">$1.250</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -0.79%</span></td>
+  <td class="numeric">185,032</td>
+  <td class="numeric">$232,287</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SKO">SKO</a>
+  </td>
+  <td  alt-tooltip alt="Serko Limited Ordinary Shares">Serko Limited Ordina...</td>
+    <td class="numeric">$0.650</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">18,250</td>
+  <td class="numeric">$11,863</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SKT">SKT</a>
+  </td>
+  <td  alt-tooltip alt="Sky Network Television Limited Ordinary Shares">Sky Network Televisi...</td>
+    <td class="numeric">$4.800</td>
+  <td class="numeric"><span class="positive-movement">$0.030 / 0.63%</span></td>
+  <td class="numeric">1,527,583</td>
+  <td class="numeric">$7,312,956</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SLG">SLG</a>
+  </td>
+  <td  alt-tooltip alt="Sealegs Corporation Limited Ordinary Shares">Sealegs Corporation ...</td>
+    <td class="numeric">$0.115</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 9.52%</span></td>
+  <td class="numeric">33,000</td>
+  <td class="numeric">$3,785</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SLI">SLI</a>
+  </td>
+  <td  alt-tooltip alt="SLI Systems Limited Ordinary Shares">SLI Systems Limited ...</td>
+    <td class="numeric">$0.830</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SML">SML</a>
+  </td>
+  <td  alt-tooltip alt="Synlait Milk Limited (NS) Ordinary Shares">Synlait Milk Limited...</td>
+    <td class="numeric">$3.200</td>
+  <td class="numeric"><span class="negative-movement">-$0.080 / -2.44%</span></td>
+  <td class="numeric">2,000</td>
+  <td class="numeric">$6,422</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SPK">SPK</a>
+  </td>
+  <td  alt-tooltip alt="Spark New Zealand Limited Ordinary Shares">Spark New Zealand Li...</td>
+    <td class="numeric">$3.535</td>
+  <td class="numeric"><span class="negative-movement">-$0.015 / -0.42%</span></td>
+  <td class="numeric">3,815,434</td>
+  <td class="numeric">$13,444,908</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SPN">SPN</a>
+  </td>
+  <td  alt-tooltip alt="South Port New Zealand Limited (NS) Ordinary Shares">South Port New Zeala...</td>
+    <td class="numeric">$4.600</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SPY">SPY</a>
+  </td>
+  <td  alt-tooltip alt="Smartpay Holdings Limited Ordinary Shares">Smartpay Holdings Li...</td>
+    <td class="numeric">$0.180</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SRF">SRF</a>
+  </td>
+  <td  alt-tooltip alt="Senior Trust Retirement Village Listed Fund (NS) Units">Senior Trust Retirem...</td>
+    <td class="numeric">$1.000</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/STR">STR</a>
+  </td>
+  <td  alt-tooltip alt="Stride Property Limited Ordinary Shares">Stride Property Limi...</td>
+    <td class="numeric">$2.345</td>
+  <td class="numeric"><span class="negative-movement">-$0.005 / -0.21%</span></td>
+  <td class="numeric">884,559</td>
+  <td class="numeric">$2,075,196</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/STU">STU</a>
+  </td>
+  <td  alt-tooltip alt="Steel &amp; Tube Holdings Limited Ordinary Shares">Steel &amp; Tube Holding...</td>
+    <td class="numeric">$1.860</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">393,354</td>
+  <td class="numeric">$733,939</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/SUM">SUM</a>
+  </td>
+  <td  alt-tooltip alt="Summerset Group Holdings Limited Ordinary Shares">Summerset Group Hold...</td>
+    <td class="numeric">$4.480</td>
+  <td class="numeric"><span class="positive-movement">$0.100 / 2.28%</span></td>
+  <td class="numeric">177,642</td>
+  <td class="numeric">$793,012</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TCL">TCL</a>
+  </td>
+  <td  alt-tooltip alt="The City of London Investment Trust Plc Ordinary Shares">The City of London I...</td>
+    <td class="numeric">$7.100</td>
+  <td class="numeric"><span class="positive-movement">$0.100 / 1.43%</span></td>
+  <td class="numeric">5,500</td>
+  <td class="numeric">$38,950</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TEM">TEM</a>
+  </td>
+  <td  alt-tooltip alt="Templeton Emerging Markets Investment Trust Plc Ord Shares">Templeton Emerging M...</td>
+    <td class="numeric">$9.270</td>
+  <td class="numeric"><span class="positive-movement">$0.220 / 2.43%</span></td>
+  <td class="numeric">3,518</td>
+  <td class="numeric">$32,612</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TEN">TEN</a>
+  </td>
+  <td  alt-tooltip alt="Tenon Limited Ordinary Shares">Tenon Limited Ordina...</td>
+    <td class="numeric">$2.530</td>
+  <td class="numeric"><span class="positive-movement">$0.010 / 0.40%</span></td>
+  <td class="numeric">5,000</td>
+  <td class="numeric">$12,650</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TGG">TGG</a>
+  </td>
+  <td  alt-tooltip alt="T&amp;G Global Limited Ordinary Shares">T&amp;G Global Limited O...</td>
+    <td class="numeric">$2.500</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">10,563</td>
+  <td class="numeric">$26,408</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TGH">TGH</a>
+  </td>
+  <td  alt-tooltip alt="Tegel Group Holdings Limited Ordinary Shares">Tegel Group Holdings...</td>
+    <td class="numeric">$1.630</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -1.21%</span></td>
+  <td class="numeric">274,580</td>
+  <td class="numeric">$446,952</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/THL">THL</a>
+  </td>
+  <td  alt-tooltip alt="Tourism Holdings Limited Ordinary Shares">Tourism Holdings Lim...</td>
+    <td class="numeric">$2.640</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">72,192</td>
+  <td class="numeric">$190,334</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TIL">TIL</a>
+  </td>
+  <td  alt-tooltip alt="Trilogy International Limited Ordinary Shares">Trilogy Internationa...</td>
+    <td class="numeric">$4.170</td>
+  <td class="numeric"><span class="positive-movement">$0.050 / 1.21%</span></td>
+  <td class="numeric">197,703</td>
+  <td class="numeric">$814,987</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TLS">TLS</a>
+  </td>
+  <td  alt-tooltip alt="Telstra Corporation Limited Ordinary Shares">Telstra Corporation ...</td>
+    <td class="numeric">$5.810</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">6,450</td>
+  <td class="numeric">$37,410</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TME">TME</a>
+  </td>
+  <td  alt-tooltip alt="Trade Me Group Limited Ordinary Shares">Trade Me Group Limit...</td>
+    <td class="numeric">$4.570</td>
+  <td class="numeric"><span class="negative-movement">-$0.060 / -1.30%</span></td>
+  <td class="numeric">931,087</td>
+  <td class="numeric">$4,261,988</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TNR">TNR</a>
+  </td>
+  <td  alt-tooltip alt="Turners Limited Ordinary Shares">Turners Limited Ordi...</td>
+    <td class="numeric">$2.900</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TNZ">TNZ</a>
+  </td>
+  <td  alt-tooltip alt="SmartTENZ">SmartTENZ</td>
+    <td class="numeric">$1.419</td>
+  <td class="numeric"><span class="positive-movement">$0.001 / 0.07%</span></td>
+  <td class="numeric">142,189</td>
+  <td class="numeric">$201,434</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TPW">TPW</a>
+  </td>
+  <td  alt-tooltip alt="Trustpower Limited Ordinary Shares">Trustpower Limited O...</td>
+    <td class="numeric">$7.680</td>
+  <td class="numeric"><span class="negative-movement">-$0.020 / -0.26%</span></td>
+  <td class="numeric">113,804</td>
+  <td class="numeric">$876,318</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TRS">TRS</a>
+  </td>
+  <td  alt-tooltip alt="TRS Investments Limited">TRS Investments Limited</td>
+    <td class="numeric">$0.004</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TTK">TTK</a>
+  </td>
+  <td  alt-tooltip alt="TeamTalk Limited Ordinary Shares">TeamTalk Limited Ord...</td>
+    <td class="numeric">$0.420</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TWF">TWF</a>
+  </td>
+  <td  alt-tooltip alt="The Total World Trust (NS) Units">The Total World Trus...</td>
+    <td class="numeric">$1.615</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">40,750</td>
+  <td class="numeric">$66,300</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/TWR">TWR</a>
+  </td>
+  <td  alt-tooltip alt="Tower Limited Ordinary Shares">Tower Limited Ordina...</td>
+    <td class="numeric">$1.370</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">166,955</td>
+  <td class="numeric">$228,118</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/USF">USF</a>
+  </td>
+  <td  alt-tooltip alt="The US 500 Trust (NS) Units">The US 500 Trust (NS...</td>
+    <td class="numeric">$5.394</td>
+  <td class="numeric"><span class="negative-movement">-$0.062 / -1.14%</span></td>
+  <td class="numeric">1,410</td>
+  <td class="numeric">$7,618</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/USG">USG</a>
+  </td>
+  <td  alt-tooltip alt="The US Large Growth Trust (NS) Units">The US Large Growth ...</td>
+    <td class="numeric">$3.005</td>
+  <td class="numeric"><span class="negative-movement">-$0.039 / -1.28%</span></td>
+  <td class="numeric">657</td>
+  <td class="numeric">$1,974</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/USM">USM</a>
+  </td>
+  <td  alt-tooltip alt="The US Mid Cap Trust (NS) Units">The US Mid Cap Trust...</td>
+    <td class="numeric">$3.392</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/USS">USS</a>
+  </td>
+  <td  alt-tooltip alt="The US Small Cap Trust (NS) Units">The US Small Cap Tru...</td>
+    <td class="numeric">$3.315</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/USV">USV</a>
+  </td>
+  <td  alt-tooltip alt="The US Large Value Trust (NS) Units">The US Large Value T...</td>
+    <td class="numeric">$2.342</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VCT">VCT</a>
+  </td>
+  <td  alt-tooltip alt="Vector Limited Ordinary Shares">Vector Limited Ordin...</td>
+    <td class="numeric">$3.250</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -1.22%</span></td>
+  <td class="numeric">174,730</td>
+  <td class="numeric">$571,724</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VGL">VGL</a>
+  </td>
+  <td  alt-tooltip alt="Vista Group International Limited Ordinary Shares">Vista Group Internat...</td>
+    <td class="numeric">$5.850</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">10,134</td>
+  <td class="numeric">$59,284</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VHP">VHP</a>
+  </td>
+  <td  alt-tooltip alt="Vital Healthcare Property Trust Ordinary Units">Vital Healthcare Pro...</td>
+    <td class="numeric">$2.190</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -1.79%</span></td>
+  <td class="numeric">270,212</td>
+  <td class="numeric">$596,796</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VHPRC">VHPRC</a>
+  </td>
+  <td  alt-tooltip alt="Vital Healthcare Property Trust - VHPRC Rights">Vital Healthcare Pro...</td>
+    <td class="numeric">$0.102</td>
+  <td class="numeric"><span class="negative-movement">-$0.008 / -7.27%</span></td>
+  <td class="numeric">423,728</td>
+  <td class="numeric">$45,280</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VIL">VIL</a>
+  </td>
+  <td  alt-tooltip alt="Veritas Investments Limited - Ordinary Shares">Veritas Investments ...</td>
+    <td class="numeric">$0.400</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/VML">VML</a>
+  </td>
+  <td  alt-tooltip alt="VMob Group Limited Ordinary Shares">VMob Group Limited O...</td>
+    <td class="numeric">$0.320</td>
+  <td class="numeric"><span class="negative-movement">-$0.010 / -3.03%</span></td>
+  <td class="numeric">20,000</td>
+  <td class="numeric">$6,500</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/WBC">WBC</a>
+  </td>
+  <td  alt-tooltip alt="Westpac Banking Corporation Ordinary Shares">Westpac Banking Corp...</td>
+    <td class="numeric">$30.610</td>
+  <td class="numeric"><span class="negative-movement">-$0.190 / -0.62%</span></td>
+  <td class="numeric">16,923</td>
+  <td class="numeric">$518,560</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/WDT">WDT</a>
+  </td>
+  <td  alt-tooltip alt="Wellington Drive Technologies Limited Ordinary Shares">Wellington Drive Tec...</td>
+    <td class="numeric">$0.100</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">1,500</td>
+  <td class="numeric">$150</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/WDTPA">WDTPA</a>
+  </td>
+  <td  alt-tooltip alt="Wellington Drive Technologies Limited Conv Pref Shares">Wellington Drive Tec...</td>
+    <td class="numeric">$0.135</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">0</td>
+  <td class="numeric">$0</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/WHS">WHS</a>
+  </td>
+  <td  alt-tooltip alt="The Warehouse Group Limited Ordinary Shares">The Warehouse Group ...</td>
+    <td class="numeric">$2.820</td>
+  <td class="numeric"><span class="positive-movement">$0.050 / 1.81%</span></td>
+  <td class="numeric">37,905</td>
+  <td class="numeric">$106,160</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/WYN">WYN</a>
+  </td>
+  <td  alt-tooltip alt="Wynyard Group Limited Ordinary Shares">Wynyard Group Limite...</td>
+    <td class="numeric">$0.650</td>
+  <td class="numeric"><span class="">$0.000 / 0.00%</span></td>
+  <td class="numeric">41,846</td>
+  <td class="numeric">$27,371</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/XRO">XRO</a>
+  </td>
+  <td  alt-tooltip alt="Xero Limited Ordinary Shares">Xero Limited Ordinar...</td>
+    <td class="numeric">$17.850</td>
+  <td class="numeric"><span class="negative-movement">-$0.350 / -1.92%</span></td>
+  <td class="numeric">209,909</td>
+  <td class="numeric">$3,802,028</td>
+</tr>
+<tr>
+  <td class="code">
+      <a href="/markets/NZSX/securities/ZEL">ZEL</a>
+  </td>
+  <td  alt-tooltip alt="Z Energy Limited Ordinary Shares">Z Energy Limited Ord...</td>
+    <td class="numeric">$8.050</td>
+  <td class="numeric"><span class="negative-movement">-$0.040 / -0.49%</span></td>
+  <td class="numeric">657,580</td>
+  <td class="numeric">$5,321,183</td>
+</tr>
+
+      </tbody>
+    </table>
+</section>
+
+
+    </div>
+  </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <footer class="foot fixed-width ">
+      <nav class="grid">
+        <div class="footer-grid">
+          <div class="footer-row">
+            <ul>
+              <li><h3>Markets</h3></li>
+
+              <li><a href="/markets/NZSX">NZX Main Board</a></li>
+              <li><a href="/markets/NZAX">NZX Alternative Market</a></li>
+              <li><a href="/markets/NZDX">NZX Debt Market</a></li>
+              <li><a href="/markets/NZZX">Fonterra Shareholders&#x27; Market</a></li>
+              <li><a href="/Derivatives">NZX Derivatives</a></li>
+              <li><a href="/data-policies">Data Glossary</a></li>
+            </ul>
+            <ul>
+              <li><h3>Regulation</h3></li>
+
+              <li><a href="/regulation">NZX Regulation</a></li>
+              <li><a href="/regulation/rules">Rules</a></li>
+              <li><a href="/NZMDT">NZMDT</a></li>
+              <li><a href="/regulation/complaints">Complaints &amp; Tips</a></li>
+              <li><a href="/regulation/faqs">FAQs</a></li>
+              <li><a href="/regulation/contact">Contact Us</a></li>
+            </ul>
+            <ul>
+
+              <li><h3>Products</h3></li>
+
+              <li><a href="/products">Products Overview</a></li>
+                <li><a href="/products/agrifax">AgriHQ</a></li>
+              <li><a href="/products/fundsource">FundSource</a></li>
+              <li><a href="/products/nzx-agri">NZX Agri</a></li>
+              <li><a href="/products/nzx-info">NZX Info</a></li>
+              <li><a href="/products/smartshares">Exchange Traded Funds (ETFs)</a></li>
+              <li><a href="/products/virtual-trading">NZX virtualTrading</a>
+
+            </ul>
+            <ul>
+              <li><h3>Services</h3></li>
+
+          <li><a href="/services">Services Overview</a></li>
+              <li><a href="/services/listing_sx_dx">Listing on the SX or DX</a></li>
+              <li><a href="/services/listing_fees">Listing Fees</a></li>
+              <li><a href="/services/become_a_participant">Become a Participant</a></li>
+              <li><a href="/services/become_a_vendor">Become a Data Vendor</a></li>
+            </ul>
+            <ul>
+              <li><h3>Investing</h3></li>
+
+              <li><a href="/investing">Investing Overview</a></li>
+              <li><a href="/investing/find_a_participant">Find a Participant</a></li>
+              <li><a href="/upcoming_listings">Upcoming Listings</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <p>&copy; Copyright 2016 NZX Limited | Market data delayed by 20 minutes | <a href="/terms">Terms of Use &amp; Privacy Policy</a> | <a href="/sitemap">Site Map</a> | <a href="/contact">Contact Us</a> | <a href="/advertising">Advertising</a> | <a href="http://www.nzxgroup.com">Corporate Info</a></p>
+      <a href="/" class="footer-logo"><img alt="NZX" height="20" src="/assets/footer-logo.png" width="70" /></a>
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+
+  </section>
+  <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+
+  <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2196699-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+<!-- BEGIN EFFECTIVE MEASURE CODE -->
+<!-- COPYRIGHT EFFECTIVE MEASURE -->
+<script type="text/javascript">
+  (function() {
+    var em = document.createElement('script'); em.type = 'text/javascript'; em.async = true;
+    em.src = ('https:' == document.location.protocol ? 'https://nz-ssl' : 'http://nz-cdn') + '.effectivemeasure.net/em.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(em, s);
+  })();
+</script>
+<noscript>
+  <img src="//nz.effectivemeasure.net/em_image" alt="" style="position:absolute; left:-5px;" />
+</noscript>
+<!--END EFFECTIVE MEASURE CODE -->
+
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="//secure-nz.imrworldwide.com/v60.js">
+</script>
+
+<script type="text/javascript">
+  var pvar = { cid: "nz-adhub", content: "0", server: "secure-nz" };
+  var trac = nol_t(pvar);
+  trac.record().post();
+</script>
+
+<noscript>
+ <div>
+   <img src="//secure-nz.imrworldwide.com/cgi-bin/m?ci=nz-adhub&amp;cg=0&amp;cc=1&amp;ts=noscript" width="1" height="1" alt="" />
+ </div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+<script src="/assets/out_bound_analytics.js" type="text/javascript"></script>
+
+</body>
+</html>
+
